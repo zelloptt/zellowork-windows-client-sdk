@@ -1,0 +1,216 @@
+<html>
+	<head>
+		<title>Zello@Work SDK sample 2</title>
+		
+		<style type="text/css">
+			body{font-family:Tahoma, Arial, sans-serif; font-size:8pt; margin:0;padding:0;}
+			form, input, password, a, label{font-family:Tahoma, Arial, sans-serif; font-size:8pt;}
+			#PttControl{height: 100%; width: 100%;}
+		</style>
+		
+		<script language="JavaScript" type="text/javascript">
+
+			function OnLoad() {
+				if (PttControl != undefined) {
+					document.getElementById("ErrorDiv").style.display = "none";
+					document.getElementById("SignInDiv").style.display = "block";
+					document.getElementById("ControlDiv").style.display = "block";
+					PttControl.attachEvent("SignInStarted", OnSignInStarted);
+					PttControl.attachEvent("SignInSucceeded", OnSignInSucceeded);
+					PttControl.attachEvent("SignInFailed", OnSignInFailed);
+					PttControl.attachEvent("SignInRequested", OnSignInRequested);
+					PttControl.attachEvent("GetCanSignIn", OnGetCanSignIn);
+					PttControl.attachEvent("SignOutStarted", OnSignOutStarted);
+					PttControl.attachEvent("SignOutComplete", OnSignOutComplete);
+					SettingsObject = PttControl.Settings;
+					if (SettingsObject != null)
+					{
+						SettingsObject.ShowOfflineMenuCommand = true;
+						document.getElementById("CompactList").checked = SettingsObject.CompactContactList;
+						document.getElementById("ShowTrayIcon").checked = SettingsObject.ShowTrayIcon;
+						document.getElementById("ShowOfflineMenuCommand").checked = SettingsObject.ShowOfflineMenuCommand;
+					}
+					NetworkObject = PttControl.Network;
+					if (NetworkObject != null) {
+						NetworkObject.NetworkName = 'default';
+						NetworkObject.LoginServer = 'default.loudtalks.net';
+						NetworkObject.WebServer = 'http://default.zellowork.com';
+						NetworkObject.EnableTls('tls.zellowork.com');
+					}
+				} else {
+				}
+			}
+
+			function OnSignIn() {
+				if (PttControl != undefined) {
+					sU = document.getElementById("Username").value;
+					sP = document.getElementById("Password").value;
+					if (sU != undefined && sP != undefined && sU != "" && sP != "") {
+						PttControl.SignIn(sU, sP, false);
+					}
+				}
+			}
+
+			function OnSignOut() {
+				if (PttControl != undefined) {
+					PttControl.SignOut();
+				}
+			}
+
+			function OnSignCancel() {
+				if (PttControl != undefined)
+					PttControl.Cancel();
+			}
+
+			function OnSignInStarted() {
+				document.getElementById("SignInDiv").style.display = "none";
+				document.getElementById("SignOutDiv").style.display = "none";
+				document.getElementById("CancelDiv").style.display = "block";
+				document.getElementById("SignedInControls").style.display = "none";
+			}
+			
+			function OnSignInSucceeded() {
+				document.getElementById("SignInDiv").style.display = "none";
+				document.getElementById("SignOutDiv").style.display = "block";
+				document.getElementById("CancelDiv").style.display = "none";
+				document.getElementById("SignedInControls").style.display = "block";
+			}
+
+			function OnSignInFailed(enCode) {
+				OnSignOutComplete();
+			}
+
+			function OnSignInRequested() {
+				OnSignIn();
+			}
+
+			function OnGetCanSignIn(bRet) {
+					sU = document.getElementById("Username").value;
+					sP = document.getElementById("Password").value;
+					if (sU != undefined && sP != undefined && sU != "" && sP != "")
+						return true;
+					else
+						return false;
+			}
+
+			function OnSignOutStarted() {
+				document.getElementById("SignInDiv").style.display = "none";
+				document.getElementById("SignOutDiv").style.display = "none";
+				document.getElementById("CancelDiv").style.display = "none";
+				document.getElementById("SignedInControls").style.display = "none";
+			}
+			
+			function OnSignOutComplete() {
+				document.getElementById("SignInDiv").style.display = "block";
+				document.getElementById("SignOutDiv").style.display = "none";
+				document.getElementById("CancelDiv").style.display = "none";
+				document.getElementById("SignedInControls").style.display = "none";
+			}
+
+			function OnChangePassword() {
+				if (PttControl != undefined)
+					PttControl.ShowPasswordWizard(0);
+			}
+
+			function OnSettings() {
+				if (PttControl != undefined)
+					PttControl.ShowSettingsDialog(0);
+			}
+
+			function OnPasswordWizard() {
+				if (PttControl != undefined)
+					PttControl.ShowPasswordWizard(0);
+			}
+
+			function OnFeedback() {
+				if (PttControl != undefined)
+					PttControl.ShowFeedbackDialog(0);
+			}
+
+			function OnAbout() {
+				if (PttControl != undefined)
+					PttControl.ShowAboutDialog(0);
+			}
+
+			function OnCompactMode() {
+				if (PttControl != undefined) {
+					SettingsObject = PttControl.Settings;
+					if (SettingsObject != null)
+						SettingsObject.CompactContactList = document.getElementById("CompactList").checked;
+				}
+			}
+
+			function OnShowOfflineMenuCommand() {
+				if (PttControl != undefined) {
+					SettingsObject = PttControl.Settings;
+					if (SettingsObject != null)
+						SettingsObject.ShowOfflineMenuCommand = document.getElementById("ShowOfflineMenuCommand").checked;
+				}
+			}
+
+			function OnShowTrayIcon() {
+				if (PttControl != undefined) {
+					SettingsObject = PttControl.Settings;
+					if (SettingsObject != null)
+						SettingsObject.ShowTrayIcon = document.getElementById("ShowTrayIcon").checked;
+				}
+			}
+
+		</script>
+
+	</head>
+	
+	<body onload="OnLoad();" scroll="no">
+
+		<table cellpadding="0" cellspacing="0" border="0" style="width:100%;height:100%;">
+			<tr>
+				<td width="50%" valign="top" style="padding:20px;">
+					<div id="SignInDiv" style="display:none;">
+						<form id="SignInForm" action="#" onsubmit="OnSignIn(); return false;">
+							<a>Username</a><br />
+							<input type="text" id="Username" value="test2"/>
+							<br />
+							<br />
+							<a>Password</a><br />
+							<input type="password" id="Password" value="test" />
+							<br />
+							<br />
+							<input type="submit" value="Sign in" />
+						</form>
+					</div>
+					<div id="SignOutDiv" style="display:none;">
+						<a href="#" onclick="OnSignOut();">Sign out</a>
+					</div>
+					<div id="CancelDiv" style="display:none;">
+						<a href="#" onclick="OnSignCancel();">Cancel</a>
+					</div>
+					<div id="ErrorDiv" style="display:block;">
+						<a>Zello@Work ActiveX is not installed or browser prevents it from creating.</a>
+					</div>
+					<div id="SignedInControls" style="display:none;">
+						<a href="#" onclick="OnPasswordWizard();">Change password...</a>
+					</div>
+					<div id="ControlDiv" style="display:none;">
+						<a href="#" onclick="OnSettings();">Settings...</a>
+						<br />
+						<a href="#" onclick="OnFeedback();">Feedback...</a>
+						<br />
+						<a href="#" onclick="OnAbout();">About...</a>
+						<br />
+						<br />
+						<br />
+						<label><input type="checkbox" id="CompactList" onclick="OnCompactMode();" />Compact contacts</label>
+						<br />
+						<label><input type="checkbox" id="ShowTrayIcon" onclick="OnShowTrayIcon();" />Show tray icon</label>
+						<br />
+						<label><input type="checkbox" id="ShowOfflineMenuCommand" onclick="OnShowOfflineMenuCommand();" />Offline menu command</label>
+					</div>
+				</td>
+				<td width="50%">
+					<object id="PttControl" classid="CLSID:8316A274-C3CE-46ae-9121-CB8E4080D0DB" codebase="http://loudtalks.net/ptt.cab"></object>
+				</td>
+			</tr>
+		</table>
+
+	</body>
+</html>

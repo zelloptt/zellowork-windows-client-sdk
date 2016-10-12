@@ -1,0 +1,1881 @@
+/**
+* \mainpage
+* Zello\@Work Client SDK for Windows allows to integrate
+* your Windows application or web-page with full-featured Zello\@Work client application.
+* Key part of this SDK is ActiveX control which is as functional as standalone Zello\@Work client application.
+* You can use Visual C++, Visual Basic, Visual C# or any other programming language supporting hosting of ActiveX controls.
+* For information on Zello server API please check http://zello.com/api/.
+*
+* @link Enums Enumeration Type Documentation@endlink
+*
+* @link Interfaces Interface Type Documentation@endlink
+*/
+/**
+* \defgroup Enums Enums
+* \defgroup Interfaces Interfaces
+*/
+
+#include "olectl.h"
+import "oaidl.idl";
+import "ocidl.idl";
+
+/**
+* \ingroup Enums
+* @{
+* Network signed-in status.
+*/
+typedef [v1_enum]
+enum NETWORK_STATUS
+{
+	/** Offline. */
+	NSOFFLINE		= 0,
+	/** Signed in. */
+	NSONLINE		= 1,
+	/** Signing in. */
+	NSSIGNINGIN		= 2,
+	/** Signing out. */
+	NSSIGNINGOUT	= 3
+}
+/// @cond NETWORK_STATUS
+NETWORK_STATUS
+/// @endcond
+;
+/*@}*/
+
+/**
+* \ingroup Enums
+* @{
+* Online status.
+*/
+typedef [v1_enum]
+enum ONLINE_STATUS
+{
+	/** Offline. */
+	OSOFFLINE		= 0,
+	/** Available. */
+	OSAVAILABLE		= 1,
+	/** Busy. */
+	OSBUSY			= 2,
+	/** Away. */
+	OSAWAY			= 3,
+	/** Headphones. */
+	OSHEADPHONES	= 4,
+	/** Connecting. Only reported for channels. */
+	OSCONNECTING	= 5,
+	/** Disconnected now, can receive offline message. */
+	OSSTANDBY		= 6,
+	/** Contact deleted. */
+	OSUNKNOWN		= 7
+}
+/// @cond ONLINE_STATUS
+ONLINE_STATUS
+/// @endcond
+;
+/*@}*/
+
+
+/**
+* \ingroup Enums
+* @{
+* Client errors.
+*/
+typedef [v1_enum]
+enum CLIENT_ERROR
+{
+	/** Ok. */
+	CL_NoError = 0,
+	/** Unknown error. */
+	CL_UnknownError = 1,
+	/** Invalid credentials. */
+	CL_InvalidCredentials,
+	/** Existing username. */
+	CL_ExistingUsername,
+	/** Invalid username. */
+	CL_InvalidUsername,
+	/** Empty username. */
+	CL_EmptyUsername,
+	/** Specified name already in use. */
+	CL_ExistingChannelName,
+	/** Sign in server error. */
+	CL_SignInServerError,
+	/** Sign in server unavailable. */
+	CL_SignInServerUnavailable,
+	/** Supernode error. */
+	CL_SuperNodeError,
+	/** Old version. */
+	CL_OldVersion,
+	/** Network suspended. */
+	CL_NetworkSuspended,
+	/** Reconnecting. */
+	CL_Reconnecting,
+	/** Kicked. */
+	CL_Kicked,
+	/** Sign up server error. */
+	CL_SignUpServerError,
+	/** Sign up server unavailable. */
+	CL_SignUpServerUnavailable,
+	/** Not used in business version. */
+	CL_SignUpDailyRateExceeded,
+	/** Not used in business version. */
+	CL_SignUpWeeklyRateExceeded,
+	/** Not used in business version. */
+	CL_SignUpMonthlyRateExceeded,
+	/** Add contact offline. */
+	CL_AddContactOffline,
+	/** Add contact error. */
+	CL_AddContactError,
+	/** Add contact exists. */
+	CL_AddContactExists,
+	/** Channel not found. */
+	CL_ChannelNotFound,
+	/** Change password: offline. */
+	CL_ChangePwdOffline,
+	/** Change password: invalid password. */
+	CL_ChangePwdInvalidPassword,
+	/** Permission denied. */
+	CL_NoPermission,
+	/** Proxy unavailable. */
+	CL_ProxyUnavailable,
+	/** Proxy authorization error. */
+	CL_ProxyAuthError,
+	/** Sign in cancelled. */
+	CL_SignInCancelled,
+	/** License error. */
+	CL_LicenseError,
+	/** License expired. */
+	CL_LicenseExpired,
+	/** Wrong network. */
+	CL_WrongNetwork,
+	/** Contact list error. */
+	CL_ContactListError,
+	/** No connection. */
+	CL_NoConnection,
+	/** Connection lost. */
+	CL_ConnectionLost,
+	/** Action pending. */
+	CL_Pending,
+	/** Action cancelled. */
+	CL_Cancelled,
+	/** Too many bad login attempts. */
+	CL_BruteForce,
+	/** Not used in business version. */
+	CL_Banned
+}
+/// @cond CLIENT_ERROR
+CLIENT_ERROR
+/// @endcond
+;
+/*@}*/
+
+/**
+* \ingroup Enums
+* @{
+* Contact type.
+*/
+typedef [v1_enum]
+enum CONTACT_TYPE
+{
+	/** User. */
+	CTUSER		= 0,
+	/** Group. */
+	CTGROUP		= 1,
+	/** Channel. */
+	CTCHANNEL	= 2
+}
+/// @cond CONTACT_TYPE
+CONTACT_TYPE
+/// @endcond
+;
+/*@}*/
+
+/*@}*/
+/**
+* \ingroup Enums
+* @{
+* Message type.
+*/
+typedef [v1_enum]
+enum MESSAGE_TYPE
+{
+	/** Audio. */
+	MTAUDIO		= 0,
+}
+/// @cond MESSAGE_TYPE
+MESSAGE_TYPE
+/// @endcond
+;
+/*@}*/
+
+/// @cond PTT_EVENTS
+typedef [v1_enum]
+enum PTT_EVENTS
+{
+	DISPID_ON_SIGN_IN_STARTED					= 0x00000001,
+	DISPID_ON_SIGN_IN_SUCCEEDED,
+	DISPID_ON_SIGN_IN_FAILED,
+	DISPID_ON_SIGN_OUT_STARTED					= 0x00000500,
+	DISPID_ON_SIGN_OUT_COMPLETE,
+	DISPID_ON_SIGN_IN_REQUESTED					= 0x00000A00,
+	DISPID_ON_GET_CAN_SIGN_IN,
+	DISPID_ON_CONTACT_LIST_CHANGED,
+	DISPID_ON_HISTORY_CHANGED					= 0x00000C00,
+	DISPID_ON_MESSAGE_IN_BEGIN					= 0x00000F00,
+	DISPID_ON_MESSAGE_IN_END,
+	DISPID_ON_MESSAGE_OUT_BEGIN,
+	DISPID_ON_MESSAGE_OUT_END,
+	DISPID_ON_MESSAGE_OUT_ERROR,
+	DISPID_ON_AUDIO_MESSAGE_IN_START,
+	DISPID_ON_AUDIO_MESSAGE_IN_STOP,
+	DISPID_ON_PLAYER_AUDIO_MESSAGE_START		= 0x00001000,
+	DISPID_ON_PLAYER_AUDIO_MESSAGE_STOP,
+	DISPID_ON_PLAYER_AUDIO_MESSAGE_PROGRESS,
+} PTT_EVENTS;
+/// @endcond
+
+/// @cond FORWARD_DECLARATIONS
+interface IContact;
+interface IContacts;
+interface IHistory;
+interface IAudioPlayer;
+interface IAudioMessagePlayback;
+interface IAudioMessageRecord;
+/// @endcond
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(3A50D50E-A39D-4677-85E3-61E458ABCC80),
+	dual,
+	oleautomation,
+	helpstring("IMessage Interface"),
+	pointer_default(unique)
+]
+/**
+* Abstract interface representing a message.
+*/
+interface IMessage : IDispatch
+{
+	/**
+	* Get message ID.
+	* ID uniquely identifies a message.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(1001), helpstring("property Id")] HRESULT Id([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get message type.
+	* \param pVal				Return value.
+	*/
+	[propget, id(1002), helpstring("property Type")] HRESULT Type([out, retval] MESSAGE_TYPE* pVal);
+
+	/**
+	* Get message creation date.
+	* \param pdVal			Return value.
+	*/
+	[propget, id(1003), helpstring("property CreationTime")] HRESULT CreationTime([out, retval] DATE* pdVal);
+
+	/**
+	* Check whether message is incoming or outgoing.
+	* \param pbVal			Return value.
+	*/
+	[propget, id(1004), helpstring("property Incoming")] HRESULT Incoming([out, retval] VARIANT_BOOL* pbVal);
+
+	/**
+	* Mark message is read or unread.
+	* \param bVal			New value.
+	*/
+	[propput, id(1005), helpstring("property Read")] HRESULT Read([in] VARIANT_BOOL bVal);
+
+	/**
+	* Check whether message is incoming or outgoing.
+	* \param pbVal			Return value.
+	*/
+	[propget, id(1005), helpstring("property Read")] HRESULT Read([out, retval] VARIANT_BOOL* pbVal);
+
+	/**
+	* Delete message from history.
+	* Once message is deleted, corresponding IMessage object can't be used any more.
+	*/
+	[id(1006), helpstring("method Delete")] HRESULT Delete();
+};
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(E0434039-64D0-4849-A62A-E780D3EA9E57),
+	dual,
+	oleautomation,
+	helpstring("IAudioMessage Interface"),
+	pointer_default(unique)
+]
+/**
+* Abstract interface representing audio message.
+*/
+interface IAudioMessage : IMessage
+{
+	/**
+	* Get message duration, in milliseconds.
+	* \param piVal			Return value.
+	*/
+	[propget, id(2001), helpstring("property Duration")] HRESULT Duration([out, retval] int* piVal);
+};
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(28987B75-A974-46a7-9503-624FD0BF7C69),
+	dual,
+	oleautomation,
+	helpstring("IAudioInMessage Interface"),
+	pointer_default(unique)
+]
+/**
+* Interface representing incoming audio message.
+*/
+interface IAudioInMessage : IAudioMessage
+{
+	/**
+	* Get message sender.
+	* If message sender is a channel or a group then IAudioInMessage::Author property can be used to get message author.
+	* \param ppVal			Return value.
+	*/
+	[propget, id(1), helpstring("property Sender")] HRESULT Sender([out, retval] IContact** ppVal);
+
+	/**
+	* Get message author for messages that come from channels and groups.
+	* No author is returned for messages that come from users.
+	* \param ppVal			Return value.
+	*/
+	[propget, id(2), helpstring("property Author")] HRESULT Author([out, retval] IContact** ppVal);
+};
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(D77F9C22-8689-4a75-851C-9D9C64E23D67),
+	dual,
+	oleautomation,
+	helpstring("IAudioOutMessage Interface"),
+	pointer_default(unique)
+]
+/**
+* Interface representing outgoing audio message.
+*/
+interface IAudioOutMessage : IAudioMessage
+{
+	/**
+	* Get message recipients.
+	* \param ppVal			Return value.
+	*/
+	[propget, id(1), helpstring("property Recipients")] HRESULT Recipients([out, retval] IContacts** ppVal);
+};
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(034EFC0A-35CE-4fef-96EB-7A44A3BE5461),
+	dual,
+	oleautomation,
+	helpstring("IContact Interface"),
+	pointer_default(unique)
+]
+/**
+* Abstract interface representing a contact.
+*/
+interface IContact : IDispatch
+{
+	/**
+	* Get contact ID.
+	* Contact ID uniquely identifies a contact.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(1001), helpstring("property Id")] HRESULT Id([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get contact type.
+	* \param pVal				Return value.
+	*/
+	[propget, id(1002), helpstring("property Type")] HRESULT Type([out, retval] CONTACT_TYPE* pVal);
+
+	/**
+	* Get contact name.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(1003), helpstring("property Name")] HRESULT Name([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get full contact name.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(1004), helpstring("property FullName")] HRESULT FullName([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get contact description.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(1005), helpstring("property Description")] HRESULT Description([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get contact status.
+	* \param pVal				Return value.
+	*/
+	[propget, id(1006), helpstring("property Status")] HRESULT Status([out, retval] ONLINE_STATUS* pVal);
+
+	/**
+	* Get contact's message history.
+	* \param ppVal				Return value.
+	*/
+	[propget, id(1007), helpstring("property History")] HRESULT History([out, retval] IHistory** ppVal);
+
+	/**
+	* Enable/disable muted mode for the contact.
+	* \param bVal					New value.
+	*/
+	[propput, id(1008), helpstring("property Muted")] HRESULT Muted([in] VARIANT_BOOL bVal);
+
+	/**
+	* Get contact mute status.
+	* \param pbVal					Return value.
+	*/
+	[propget, id(1008), helpstring("property Muted")] HRESULT Muted([out, retval] VARIANT_BOOL* pbVal);
+
+};
+/*@}*/
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(E632F6CA-69E6-43a7-ADE1-331BB33A72F1),
+	dual,
+	oleautomation,
+	nonextensible,
+	helpstring("IUser Interface"),
+	pointer_default(unique)
+]
+/**
+* IUser interface allows to read user properties.
+*/
+interface IUser : IContact
+{
+	/**
+	* Get user custom status text.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(1), helpstring("property CustomStatusText")] HRESULT CustomStatusText([out, retval] BSTR* pbstrVal);
+};
+/*@}*/
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(087027E3-181F-423E-AEEC-2ED93967AF4B),
+	dual,
+	oleautomation,
+	nonextensible,
+	helpstring("IGroup Interface"),
+	pointer_default(unique)
+]
+/**
+* IGroup interface allows to read group properties.
+*/
+interface IGroup : IContact
+{
+	/**
+	* Get number of contacts in group.
+	* \param piVal				Return value.
+	*/
+	[propget, id(1), helpstring("property Count")] HRESULT Count([out, retval] int* piVal);
+
+	/**
+	* Get existing contact by index.
+	* Groups only contain users.
+	* \param iIndex				Contact index.
+	* \param ppContact			Return value.
+	*/
+	[propget, id(2), helpstring("property Item")] HRESULT Item([in] int iIndex, [out, retval] IContact** ppContact);
+
+	/**
+	* Find existing contact by ID or name.
+	* It's recommended to always use contact ID.
+	* Groups only contain users.
+	* \param bstrContact		Contact ID or name.
+	* \param ppContact			Return value. NULL is returned if contact with given ID or name doesn't exist.
+	*/
+	[id(3), helpstring("method Find")] HRESULT Find([in] BSTR bstrContact, [out, retval] IContact** ppContact);
+
+	/**
+	* Get number of online contacts in group.
+	* \param piVal				Return value.
+	*/
+	[propget, id(4), helpstring("property OnlineCount")] HRESULT OnlineCount([out, retval] int* piVal);
+};
+/*@}*/
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(292C5923-A717-465D-B222-E7AF7E9A79E8),
+	dual,
+	oleautomation,
+	nonextensible,
+	helpstring("IChannel Interface"),
+	pointer_default(unique)
+]
+/**
+* IChannel interface allows to read channel properties.
+*/
+interface IChannel : IContact
+{
+	/**
+	* Connect to disconnected channel.
+	* It may take up to several seconds to connect to a channel.
+	*/
+	[id(1), helpstring("method Connect")] HRESULT Connect();
+
+	/**
+	* Disconnect from connected channel.
+	*/
+	[id(2), helpstring("method Disconnect")] HRESULT Disconnect();
+
+	/**
+	* Enable/disable automatic connecting to a channel.
+	* \param bVal					New value.
+	*/
+	[propput, id(3), helpstring("property AutoConnect")] HRESULT AutoConnect([in] VARIANT_BOOL bVal);
+
+	/**
+	* Get current online status.
+	* \param pbVal					Return value.
+	*/
+	[propget, id(3), helpstring("property AutoConnect")] HRESULT AutoConnect([out, retval] VARIANT_BOOL* pbVal);
+
+	/**
+	* Get number of online contacts in channel.
+	* \param piVal				Return value.
+	*/
+	[propget, id(4), helpstring("property OnlineCount")] HRESULT OnlineCount([out, retval] int* piVal);
+};
+/*@}*/
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(8014091C-F92D-4441-A7A6-9677651D86DD),
+	dual,
+	oleautomation,
+	nonextensible,
+	helpstring("IHistory Interface"),
+	pointer_default(unique)
+]
+/**
+* IHistory interface allows to enumerate and manage messages.
+*/
+interface IHistory : IDispatch
+{
+	/**
+	* Get number of messages.
+	* \param piVal				Return value.
+	*/
+	[propget, id(1), helpstring("property Count")] HRESULT Count([out, retval] int* piVal);
+
+	/**
+	* Get message by index.
+	* If result represents an audio message, it can be queried for \ref IAudioMessage, \ref IAudioInMessage or \ref IAudioOutMessage.
+	* \param iIndex				Message index.
+	* \param ppMessage			Return value.
+	*/
+	[propget, id(2), helpstring("property Item")] HRESULT Item([in] int iIndex, [out, retval] IMessage** ppMessage);
+
+	/**
+	* Find message by ID.
+	* If result represents an audio message, it can be queried for \ref IAudioMessage, \ref IAudioInMessage or \ref IAudioOutMessage.
+	* \param bstrId				Message ID.
+	* \param ppMessage			Return value. NULL is returned if message with given ID doesn't exist.
+	*/
+	[id(3), helpstring("method Find")] HRESULT Find([in] BSTR bstrId, [out, retval] IMessage** ppMessage);
+
+	/**
+	* Delete all messages contained in this history object.
+	*/
+	[id(4), helpstring("method DeleteAll")] HRESULT DeleteAll();
+};
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(D617EC4D-0A09-4041-B01F-97B68526F820),
+	dual,
+	oleautomation,
+	nonextensible,
+	helpstring("IContacts Interface"),
+	pointer_default(unique)
+]
+/**
+* IContacts interface allows to manage contact list.
+*/
+interface IContacts : IDispatch
+{
+	/**
+	* Get number of contacts in list.
+	* \param piVal				Return value.
+	*/
+	[propget, id(1), helpstring("property Count")] HRESULT Count([out, retval] int* piVal);
+
+	/**
+	* Get contact by index.
+	* If result represents a group or a channel, it can be queried for \ref IGroup or \ref IChannel.
+	* \param iIndex				Contact index.
+	* \param ppContact			Return value.
+	*/
+	[propget, id(2), helpstring("property Item")] HRESULT Item([in] int iIndex, [out, retval] IContact** ppContact);
+
+	/**
+	* Find contact by ID or name.
+	* It's recommended to always use contact ID.
+	* Groups and channels are not included in search when name is used.
+	* If result represents a group or channel, it can be queried for \ref IGroup or \ref IChannel.
+	* \param bstrContact		Contact ID or name.
+	* \param ppContact			Return value. NULL is returned if contact with given ID or name doesn't exist.
+	*/
+	[id(3), helpstring("method Find")] HRESULT Find([in] BSTR bstrContact, [out, retval] IContact** ppContact);
+};
+/*@}*/
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(ED0CD84A-3D1C-4b42-B7F0-B3922F710627),
+	dual,
+	oleautomation,
+	nonextensible,
+	helpstring("INetwork Interface"),
+	pointer_default(unique)
+]
+/**
+* INetwork interface allows to configure network parameters.
+*/
+interface INetwork : IDispatch
+{
+	/**
+	* Set login server address. Address can include port number.
+	* Following addresses are valid:
+	* 192.168.0.1:443
+	* login.scrapyard.com
+	* Login server can only be changed in offline mode.
+	* \param bstrVal			Address string value.
+	*/
+	[propput, id(1), helpstring("property LoginServer")] HRESULT LoginServer([in] BSTR bstrVal);
+
+	/**
+	* Set login server address. Address can't include port number.
+	* Sample WEB server address:
+	* http://loudtalks.com/
+	* \param bstrVal			Address string value.
+	*/
+	[propput, id(2), helpstring("property WebServer")] HRESULT WebServer([in] BSTR bstrVal);
+
+	/**
+	* Add supernode to supernode list. Address can include port number.
+	* Following addresses are valid:
+	* 192.168.0.1
+	* login.scrapyard.com
+	* Supernode list can only be changed in offline mode.
+	* \param bstrVal			Address string value.
+	*/
+	[id(3), helpstring("method AddSupernode")] HRESULT AddSupernode([in] BSTR bstrVal);
+
+	/**
+	* Remove all supernodes from list.
+	*/
+	[id(4), helpstring("method ResetSupernodes")] HRESULT ResetSupernodes();
+
+	/**
+	* Set network name. Login servers and supernodes may serve several networks.
+	* \param bstrVal			Network name.
+	*/
+	[propput, id(5), helpstring("property NetworkName")] HRESULT NetworkName([in] BSTR bstrVal);
+
+};
+/*@}*/
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(6D3C8268-383C-47ff-883A-B319731B28D9),
+	dual,
+	oleautomation,
+	helpstring("INetwork2 Interface"),
+	pointer_default(unique)
+]
+/**
+* INetwork2 interface extends INetwork, enables the encrypted connections
+*/
+interface INetwork2 : INetwork
+{
+	/**
+	* Method enables TLS with client certificate authentication
+	* \param bstrCommonName			Certificate's common name / realm.
+	*/
+	[id(100), helpstring("method EnableTls")] HRESULT EnableTls([in] BSTR bstrCommonName);
+
+	/**
+	* Check if allowed TLS connections are in use. If previously allowed secure connections has failed, zello uses generic connections, and this property is set to false
+	* \param pbVal				Return value.
+	*/
+	[propget, id(101), helpstring("property SecureConnections")] HRESULT SecureConnections([out, retval] VARIANT_BOOL* pbVal);
+
+
+};
+/*@}*/
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(E513B0B0-C55E-468a-9535-B982D82E1047),
+	dual,
+	oleautomation,
+	nonextensible,
+	helpstring("ISettings Interface"),
+	pointer_default(unique)
+]
+/**
+* ISettings interface allows to change object settings.
+*/
+interface ISettings : IDispatch
+{
+	/**
+	* Check if compact contact list mode is active.
+	* \param pbVal				Return value.
+	*/
+	[propget, id(1), helpstring("property CompactContactList")] HRESULT CompactContactList([out, retval] VARIANT_BOOL* pbVal);
+
+	/**
+	* Change contact list mode.
+	* \param bVal				New value.
+	*/
+	[propput, id(1), helpstring("property CompactContactList")] HRESULT CompactContactList([in] VARIANT_BOOL bVal);
+
+	/**
+	* Check if tray icon is enabled.
+	* \param pbVal				Return value.
+	*/
+	[propget, id(2), helpstring("property ShowTrayIcon")] HRESULT ShowTrayIcon([out, retval] VARIANT_BOOL* pbVal);
+
+	/**
+	* Show or hide tray icon.
+	* \param bVal				New value.
+	*/
+	[propput, id(2), helpstring("property ShowTrayIcon")] HRESULT ShowTrayIcon([in] VARIANT_BOOL bVal);
+
+	/**
+	* Check if "Offline" command is shown in status menu.
+	* \param pbVal				Return value.
+	*/
+	[propget, id(3), helpstring("property ShowOfflineMenuCommand")] HRESULT ShowOfflineMenuCommand([out, retval] VARIANT_BOOL* pbVal);
+
+	/**
+	* Show or hide "Offline" command in status menu.
+	* \param bVal				New value.
+	*/
+	[propput, id(3), helpstring("property ShowOfflineMenuCommand")] HRESULT ShowOfflineMenuCommand([in] VARIANT_BOOL bVal);
+
+	/**
+	* Show incoming message notification popup
+	* \param pbVal				Return value.
+	*/
+	[propget, id(4), helpstring("property ShowIncomingNotification")] HRESULT ShowIncomingNotification([out, retval] VARIANT_BOOL* pbVal);
+
+	/**
+	* Show incoming message notification popup
+	* \param bVal				New value.
+	*/
+	[propput, id(4), helpstring("property ShowIncomingNotification")] HRESULT ShowIncomingNotification([in] VARIANT_BOOL bVal);
+
+	/**
+	* Show outgoing message notification popup
+	* \param pbVal				Return value.
+	*/
+	[propget, id(5), helpstring("property ShowOutgoingNotification")] HRESULT ShowOutgoingNotification([out, retval] VARIANT_BOOL* pbVal);
+
+	/**
+	* Show outgoing message notification popup
+	* \param bVal				New value.
+	*/
+	[propput, id(5), helpstring("property ShowOutgoingNotification")] HRESULT ShowOutgoingNotification([in] VARIANT_BOOL bVal);
+
+	/**
+	* Check if soft key bar is enabled.
+	* Works in SDK for Windows Mobile/CE only.
+	* \param pbVal				Return value.
+	*/
+	[propget, id(6), helpstring("property CreateSoftKeyBar")] HRESULT CreateSoftKeyBar([out, retval] VARIANT_BOOL* pbVal);
+
+	/**
+	* Show or hide soft key bar.
+	* Works in SDK for Windows Mobile/CE only.
+	* \param bVal				New value.
+	*/
+	[propput, id(6), helpstring("property CreateSoftKeyBar")] HRESULT CreateSoftKeyBar([in] VARIANT_BOOL bVal);
+
+	/**
+	* Check if VOX is enabled.
+	* \param pbVal				Return value.
+	*/
+	[propget, id(7), helpstring("property VoxEnabled")] HRESULT VoxEnabled([out, retval] VARIANT_BOOL* pbVal);
+
+	/**
+	* Enable or disable VOX.
+	* \param bVal				New value.
+	*/
+	[propput, id(7), helpstring("property VoxEnabled")] HRESULT VoxEnabled([in] VARIANT_BOOL bVal);
+
+	/**
+	* Get current VOX activation threshold, dB
+	* \param piVal				Return value.
+	*/
+	[propget, id(8), helpstring("property VoxActivationThreshold")] HRESULT VoxActivationThreshold([out, retval] int* piVal);
+
+	/**
+	* Set VOX activation threshold, [-80, 0] dB.
+	* \param iVal				New value.
+	*/
+	[propput, id(8), helpstring("property VoxActivationThreshold")] HRESULT VoxActivationThreshold([in] int iVal);
+
+	/**
+	* Get current VOX de-activation threshold, dB
+	* \param piVal				Return value.
+	*/
+	[propget, id(9), helpstring("property VoxDeactivationThreshold")] HRESULT VoxDeactivationThreshold([out, retval] int* piVal);
+
+	/**
+	* Set VOX de-activation threshold, [-80, 0] dB.
+	* De-activation threshold must be less than or equal to activation threshold.
+	* \param iVal				New value.
+	*/
+	[propput, id(9), helpstring("property VoxDeactivationThreshold")] HRESULT VoxDeactivationThreshold([in] int iVal);
+
+	/**
+	* Get current VOX trigger time, ms.
+	* \param piVal				Return value.
+	*/
+	[propget, id(10), helpstring("property VoxTriggerTime")] HRESULT VoxTriggerTime([out, retval] int* piVal);
+
+	/**
+	* Set VOX trigger time, [0, 2000] ms.
+	* \param iVal				New value.
+	*/
+	[propput, id(10), helpstring("property VoxTriggerTime")] HRESULT VoxTriggerTime([in] int iVal);
+
+	/**
+	* Get current VOX relaxation time, ms.
+	* \param piVal				Return value.
+	*/
+	[propget, id(11), helpstring("property VoxRelaxationTime")] HRESULT VoxRelaxationTime([out, retval] int* piVal);
+
+	/**
+	* Set VOX relaxation time, [0, 2000] ms.
+	* \param iVal				New value.
+	*/
+	[propput, id(11), helpstring("property VoxRelaxationTime")] HRESULT VoxRelaxationTime([in] int iVal);
+
+};
+/*@}*/
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(6F6D708F-0601-47e4-836E-6EA2F942EC3F),
+	dual,
+	oleautomation,
+	helpstring("IAudioDevices interface"),
+	pointer_default(unique)
+]
+/**
+* IAudioDevices interface helps to enumerate and identify recording and playback audio devices.
+*/
+interface IAudioDevices : IDispatch
+{
+	/**
+	* Get number of audio devices.
+	* \param piVal				Return value.
+	*/
+	[propget, id(1), helpstring("property Count")] HRESULT Count([out, retval] int* piVal);
+
+	/**
+	* Get audio device ID.
+	* Audio device ID uniquely identifies a contact.
+	* \param iIndex				Audio device index.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(2), helpstring("property Id")] HRESULT Id([in] int iIndex, [out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get audio device name.
+	* \param iIndex				Audio device index.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(3), helpstring("property Name")] HRESULT Name([in] int iIndex, [out, retval] BSTR* pbstrVal);
+};
+/*@}*/
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(46B9C8D5-2E2F-4ce0-9262-948D320C3E76),
+	dual,
+	oleautomation,
+	helpstring("ISettings2 Interface"),
+	pointer_default(unique)
+]
+/**
+* ISettings2 interface extends ISettings, allows persistent change of the recording and playback audio devices
+*/
+interface ISettings2 : ISettings
+{
+	/**
+	* Get active playback audio device ID.
+	* Audio device ID uniquely identifies a device
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(101), helpstring("property PlaybackDeviceId")] HRESULT PlaybackDeviceId([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Update playback device
+	* Correct device ID should be obtained from IAudioDevices collection
+	* Empty device ID restores default device selection preferences
+	* \param bstrNewDeviceId	New value.
+	*/
+	[propput, id(101), helpstring("property PlaybackDeviceId")] HRESULT PlaybackDeviceId([in] BSTR bstrNewDeviceId);
+
+	/**
+	* Get active recording audio device ID.
+	* Audio device ID uniquely identifies a device
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(102), helpstring("property RecordingDeviceId")] HRESULT RecordingDeviceId([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Update recording device
+	* Correct device ID should be obtained from IAudioDevices collection
+	* Empty device ID restores default device selection preferences
+	* \param bstrNewDeviceId	New value.
+	*/
+	[propput, id(102), helpstring("property RecordingDeviceId")] HRESULT RecordingDeviceId([in] BSTR bstrNewDeviceId);
+
+	/**
+	* Get \ref IAudioDevices interface to access collection of audio devices currently available for playback
+	* \param pparrDevices			Return value.
+	*/
+	[id(103), helpstring("method GetPlaybackDevices")] HRESULT GetPlaybackDevices([out,retval] IAudioDevices** pparrDevices);
+
+	/**
+	* Get \ref IAudioDevices interface to access collection of audio devices currently available for recording
+	* \param pparrDevices			Return value.
+	*/
+	[id(104), helpstring("method GetRecordingDevices")] HRESULT GetRecordingDevices([out,retval] IAudioDevices** pparrDevices);
+};
+/*@}*/
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(69E1EFC4-E851-42bc-AC43-21A58B6CB091),
+	dual,
+	oleautomation,
+	helpstring("ISettings3 Interface"),
+	pointer_default(unique)
+]
+/**
+* ISettings3 interface extends ISettings2, allows proxy server setup
+*/
+interface ISettings3 : ISettings2
+{
+	/**
+	* Check if proxy server is enabled.
+	* \param pbVal				Return value.
+	*/
+	[propget, id(200), helpstring("property ProxyEnabled")] HRESULT ProxyEnabled([out, retval] VARIANT_BOOL* pbVal);
+
+	/**
+	* Enable or disable proxy server. Applies all other proxy settings to the control
+	* \param bVal				New value.
+	*/
+	[propput, id(200), helpstring("property ProxyEnabled")] HRESULT ProxyEnabled([in] VARIANT_BOOL bVal);
+
+	/**
+	* Get proxy server type.
+	* \param pbVal				Return value. TRUE for HTTP(S) proxy, false for SOCKS5 proxy
+	*/
+	[propget, id(201), helpstring("property ProxyType")] HRESULT ProxyType([out, retval] VARIANT_BOOL* pbVal);
+
+	/**
+	* Enable or disable proxy server.
+	* \param bVal				New value.
+	*/
+	[propput, id(201), helpstring("property ProxyType")] HRESULT ProxyType([in] VARIANT_BOOL bVal);
+
+	/**
+	* Set proxy server address and port
+	* \param bstrAddress		New proxy server address.
+	* \param uiPort				New proxy server port.
+	*/
+	[id(202), helpstring("method SetProxyServer")] HRESULT SetProxyServer([in] BSTR bstrAddress,[in] UINT uiPort);
+
+	/**
+	* Get proxy server address.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(203), helpstring("property ProxyServerAddress")] HRESULT ProxyServerAddress([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get proxy server port.
+	* \param pusVal			Return value.
+	*/
+	[propget, id(204), helpstring("property ProxyServerPort")] HRESULT ProxyServerPort([out, retval] unsigned short* pusVal);
+
+	/**
+	* Check if proxy server authentication is enabled.
+	* \param pbVal				Return value.
+	*/
+	[propget, id(205), helpstring("property ProxyAuthEnabled")] HRESULT ProxyAuthEnabled([out, retval] VARIANT_BOOL* pbVal);
+
+	/**
+	* Enable or disable proxy server authentication.
+	* \param bVal				New value.
+	*/
+	[propput, id(205), helpstring("property ProxyAuthEnabled")] HRESULT ProxyAuthEnabled([in] VARIANT_BOOL bVal);
+
+	/**
+	* Set login and password for the proxy server
+	* \param bstrLogin			New login.
+	* \param bstrPassword		New password.
+	*/
+	[id(206), helpstring("method SetProxyServerAuth")] HRESULT SetProxyServerAuth([in] BSTR bstrLogin, [in] BSTR bstrPassword);
+
+	/**
+	* Get login for proxy server.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(207), helpstring("property ProxyServerLogin")] HRESULT ProxyServerLogin([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get password for proxy server.
+	* \param pusVal			Return value.
+	*/
+	[propget, id(208), helpstring("property ProxyServerPassword")] HRESULT ProxyServerPassword([out, retval] BSTR* pbstrVal);
+
+};
+/*@}*/
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(DD8FD727-E041-4FEA-8415-156E3CCA1E6A),
+	dual,
+	oleautomation,
+	nonextensible,
+	helpstring("ICustomization Interface"),
+	pointer_default(unique)
+]
+/**
+* ICustomization interface allows to change brand-related properties of object.
+*/
+interface ICustomization : IDispatch
+{
+	/**
+	* Set full path to OEM configuration file.
+	* Path should include file name.
+	* Normally configuration file is named oem.config, but this is not mandatory.
+	* \param bstrVal				File name.
+	*/
+	[propput, id(1), helpstring("property OemConfigFile")] HRESULT OemConfigFile([in] BSTR bstrVal);
+
+	/**
+	* Set oem.config file content.
+	* \param ppVal					Data.
+	*/
+	[propput, id(2), helpstring("property OemConfigData")] HRESULT OemConfigData([in,out] SAFEARRAY (unsigned char)* ppVal);
+};
+/*@}*/
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(B535A432-1CF4-44A8-AAC3-1F736C353CB7),
+	dual,
+	oleautomation,
+	nonextensible,
+	helpstring("IPtt Interface"),
+	pointer_default(unique),
+	oleautomation,
+	odl
+]
+/**
+* IPtt interface manages control behavior.
+* It allows to configure login server, supernode list, user credentials etc.
+*/
+interface IPtt : IDispatch
+{
+	/**
+	* Sign in to network.
+	* When sign in succeeds of fails, appropriate event is fired on \ref IPttEvents interface.
+	* \param bstrUsername			Username.
+	* \param bstrPassword			Password.
+	* \param bPasswordHash			bstrPassword contains password MD5 hash instead of actial password value.
+	*/
+	[id(1), helpstring("method SignIn")] HRESULT SignIn([in] BSTR bstrUsername, [in] BSTR bstrPassword, [in] VARIANT_BOOL bPasswordHash);
+
+	/**
+	* Sign out.
+	* When sign out is complete, an appropriate event is fired on \ref IPttEvents interface.
+	*/
+	[id(2), helpstring("method SignOut")] HRESULT SignOut();
+
+	/**
+	* Cancel signing in if it's in progress.
+	* After signing in is halted, an event is fired on \ref IPttEvents interface.
+	*/
+	[id(3), helpstring("method Cancel")] HRESULT Cancel();
+
+	/**
+	* Get current network status.
+	* \param pVal					Return value.
+	*/
+	[propget, id(4), helpstring("property NetworkStatus")] HRESULT NetworkStatus([out, retval] NETWORK_STATUS* pVal);
+
+	/**
+	* Set online online status.
+	* \param nVal					Status.
+	*/
+	[propput, id(5), helpstring("property OnlineStatus")] HRESULT OnlineStatus([in] ONLINE_STATUS nVal);
+
+	/**
+	* Get current online status.
+	* \param pVal					Return value.
+	*/
+	[propget, id(5), helpstring("property OnlineStatus")] HRESULT OnlineStatus([out, retval] ONLINE_STATUS* pVal);
+
+	/**
+	* Get username used to sign in last time.
+	* \param bstrpVal				Return value.
+	*/
+	[propget, id(6), helpstring("property Username")] HRESULT Username([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get password used to sign in last time. Hash value is returned instead of actual value.
+	* \param bstrpVal				Return value.
+	*/
+	[propget, id(7), helpstring("property Password")] HRESULT Password([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get \ref IContacts interface.
+	* \param ppVal					Return value.
+	*/
+	[propget, id(8), helpstring("property Contacts")] HRESULT Contacts([out, retval] IContacts** ppVal);
+
+	/**
+	* Get \ref INetwork interface.
+	* \param ppVal					Return value.
+	*/
+	[propget, id(9), helpstring("property Network")] HRESULT Network([out, retval] INetwork** ppVal);
+
+	/**
+	* Get \ref ISettings interface.
+	* \param ppVal					Return value. Developer may query \ref ISettings2 interface if required
+	*/
+	[propget, id(10), helpstring("property Settings")] HRESULT Settings([out, retval] ISettings** ppVal);
+
+	/**
+	* Get message history.
+	* \param bstrFilter			Filter string. Pass empty string to collect history for all contacts.
+	* \param ppVal				Return value.
+	*/
+	[propget, id(11), helpstring("property History")] HRESULT History([in] BSTR bstrFilter, [out, retval] IHistory** ppVal);
+
+	/**
+	* Get player.
+	* \param ppVal				Return value.
+	*/
+	[propget, id(12), helpstring("property Player")] HRESULT AudioPlayer([out, retval] IAudioPlayer** ppVal);
+
+	/**
+	* Show "Settings" dialog. Dialog is shown modally, calling thread is blocked intil dialog is closed.
+	* \param lParentWindow		Dialog owner window. If zero is passed, root parent window is used.
+	*/
+	[id(13), helpstring("method ShowSettingsDialog")] HRESULT ShowSettingsDialog([in] long lParentWindow);
+
+	/**
+	* Show "About" dialog. Dialog is shown modally, calling thread is blocked intil dialog is closed.
+	* \param lParentWindow		Dialog owner window. If zero is passed, root parent window is used.
+	*/
+	[id(14), helpstring("method ShowAboutDialog")] HRESULT ShowAboutDialog([in] long lParentWindow);
+
+	/**
+	* Show "Report a problem" dialog. Dialog is shown modally, calling thread is blocked intil dialog is closed.
+	* \param lParentWindow		Dialog owner window. If zero is passed, root parent window is used.
+	*/
+	[id(15), helpstring("method ShowFeedbackDialog")] HRESULT ShowFeedbackDialog([in] long lParentWindow);
+
+	/**
+	* Show "Change password" wizard. Wizard is shown modally, calling thread is blocked intil dialog is closed.
+	* Password wizard can only be used in server contacts mode.
+	* Password wizard is available inly in signed in state.
+	* \param lParentWindow		Wizard owner window. If zero is passed, root parent window is used.
+	* \return 					S_OK if wizard was shown, S_FALSE otherwise.
+	*/
+	[id(16), helpstring("method ShowPasswordWizard")] HRESULT ShowPasswordWizard([in] long lParentWindow);
+
+	/**
+	* Start sending audio message.
+	* \param Users				List of message recipients' names and/or ID's.
+	* If list is empty, message is sent to all selected users.
+	*/
+	[id(17), helpstring("method BeginMessage")] HRESULT BeginMessage([in] SAFEARRAY (BSTR) Users);
+
+	/**
+	* Stop sending audio message.
+	*/
+	[id(18), helpstring("method EndMessage")] HRESULT EndMessage();
+
+	/**
+	* Repeat last message.
+	*/
+	[id(19), helpstring("method RepeatLastMessage")] HRESULT RepeatLastMessage ();
+
+	/**
+	* Start sending audio message.
+	* The sole purpose of this function is to support Visual Basic 6.
+	* \param Users				List of message recipients' names and/or ID's.
+	* If list is empty, message is sent to all selected users.
+	*/
+	[id(20), helpstring("method BeginMessage2")] HRESULT BeginMessage2([in,out] SAFEARRAY (BSTR)* Users);
+
+	/**
+	* Get \ref ICustomization interface.
+	* \param ppVal				Return value.
+	*/
+	[propget, id(21), helpstring("property Customization")] HRESULT Customization([out, retval] ICustomization** ppVal);
+
+	/**
+	* Request contact list from server.
+	* When server API is used to change contact list, it takes some some before new contact list arrives to a client.
+	* This function can be used to request new contact list instantly.
+	* \return 					S_OK if success, S_FALSE if user is not signed in.
+	*/
+	[id(22), helpstring("method UpdateContacts")] HRESULT UpdateContacts();
+
+	/**
+	* Show full contact list.
+	* This method closes history view or list of group/channel users if one is opened.
+	* Works when signed in only.
+	* \return 					S_OK if success, S_FALSE if contact does not exist or is not present in active view.
+	*/
+	[id(23), helpstring("method ShowContacts")] HRESULT ShowContacts();
+
+	/**
+	* Shows message history of a contact.
+	* \param pContact			Contact whose history is to be shown.
+	* If NULL, all messages stored in history are displayed and filter edit box is shown.
+	* \return 					S_OK if success, S_FALSE if contact does not exist.
+	*/
+	[id(24), helpstring("method OpenHistory")] HRESULT OpenHistory(IContact* pContact);
+
+	/**
+	* Hides history view.
+	*/
+	[id(25), helpstring("method CloseHistory")] HRESULT CloseHistory();
+
+	/**
+	* Show list of channel or group users.
+	* Works when signed in only.
+	* \param pContact			IGroup or IChannel to be expanded.
+	* \return 					S_OK if success, S_FALSE if contact does not exist or can't be expanded.
+	*/
+	[id(26), helpstring("method ExpandContact")] HRESULT ExpandContact(IContact* pContact);
+
+	/**
+	* Set focus to contact.
+	* Works when signed in only.
+	* \param pContact			Contact to be selected.
+	* \return 					S_OK if success, S_FALSE if contact does not exist or is not present in active view.
+	*/
+	[id(27), helpstring("method SelectContact")] HRESULT SelectContact(IContact* pContact);
+
+	/**
+	* Check if VOX feature is active.
+	* \param pbVal				Return value.
+	*/
+	[propget, id(28), helpstring("property VoxActive")] HRESULT VoxActive([out, retval] VARIANT_BOOL* pbVal);
+
+	/**
+	* Activate or deactivate VOX.
+	* \param bVal				New value.
+	*/
+	[propput, id(28), helpstring("property VoxActive")] HRESULT VoxActive([in] VARIANT_BOOL bVal);
+
+	/**
+	* Set custom status text.
+	* \param nVal					Status text.
+	*/
+	[propput, id(29), helpstring("property StatusText")] HRESULT StatusText([in] BSTR bstrStatusText);
+
+	/**
+	* Get current status text.
+	* \param pVal					Return value.
+	*/
+	[propget, id(29), helpstring("property StatusText")] HRESULT StatusText([out, retval] BSTR* pbstrStatusText);
+
+};
+/*@}*/
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(02962E0D-38A2-4c34-BF2A-2F2A0B48E447),
+	dual,
+	oleautomation,
+	helpstring("IPtt2 Interface"),
+	pointer_default(unique)
+]
+/**
+* IPtt2 interface extends IPtt, allows external message ids
+*/
+interface IPtt2 : IPtt
+{
+	/**
+	* Start sending audio message.
+	* \param Users				List of message recipients' names and/or ID's.
+	* If list is empty, message is sent to all selected users.
+	* \param bstrExternalId		External message id
+	*/
+	[id(100), helpstring("method BeginMessage")] HRESULT BeginMessageEx([in] SAFEARRAY (BSTR) Users, [in] BSTR bstrExternalId);
+
+	/**
+	* Send call alert
+	* \param pContact			Receiver of the message
+	* \param bstrText			Alert message
+	* \param bstrExternalId		External alert id
+	*/
+	[id(101), helpstring("method SendCallAlert")] HRESULT SendCallAlert([in] IContact* pContact, [in] BSTR bstrText, [in] BSTR bstrExternalId);
+
+	/**
+	* Send shared image
+	* \param pContact			Receiver of the message, IChannel or IUser
+	* \param bstrText			Path to image file
+	* \param bstrExternalId		External image id
+	*/
+	[id(102), helpstring("method ShareImage")] HRESULT ShareImage([in] IContact* pContact, [in] BSTR bstrText, [in] BSTR bstrExternalId);
+
+	/**
+	* Get active solo contact
+	* \param ppVal				Return value
+	*/
+	[id(103), helpstring("method GetSoloContact")] HRESULT GetSoloContact([out, retval] IContact** ppVal);
+
+	/**
+	* Set new solo contact
+	* \param pContact			New solo contact: IGroup, IChannel or IUser. Set NULL value to deactivate solo
+	*/
+	[id(104), helpstring("method UpdateSoloContact")] HRESULT UpdateSoloContact([in] IContact* pContact);
+};
+/*@}*/
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(BD0F65CD-AFCD-4407-9AE3-EB3EE4BABD60),
+	dual,
+	oleautomation,
+	helpstring("IPtt3 Interface"),
+	pointer_default(unique)
+]
+/**
+* IPtt3 interface extends IPtt2, enables AutoConnect feature
+* if AutoConnect is on (default value) PTT will connect to every newly added channel
+*/
+interface IPtt3 : IPtt2
+{
+	/**
+	* Check if AutoConnect feature is active.
+	* \param pbVal				Return value.
+	*/
+	[propget, id(200), helpstring("property AutoConnect")] HRESULT AutoConnect([out, retval] VARIANT_BOOL* pbVal);
+
+	/**
+	* Enable or disable AutoConnect feature.
+	* \param bVal				New value.
+	*/
+	[propput, id(200), helpstring("property AutoConnect")] HRESULT AutoConnect([in] VARIANT_BOOL bVal);
+
+};
+/*@}*/
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(EE361DF2-315C-47fe-9526-C7EA044DCE5E),
+	dual,
+	oleautomation,
+	helpstring("IPtt4 Interface"),
+	pointer_default(unique)
+]
+/**
+* IPtt4 interface extends IPtt4 and enables audio integration with third party applications.
+*/
+interface IPtt4 : IPtt3
+{
+	/**
+	* Switch the client to a mode when audio data for incoming messages is passed to a thrird-party app and a thirt-party app supplies the audio data for outgoing messages.
+	* \param pPlayback			An object that will be used to notify a thrid-party app about incoming messages.
+	* \param ppRecord			Returns an object that will be used to notify the client about outgoing messages.
+	*/
+	[id(300), helpstring("method StartAudioMessageIntegration")] HRESULT StartAudioMessageIntegration([in] IAudioMessagePlayback* pPlayback, [out, retval] IAudioMessageRecord** ppRecord);
+
+	/**
+	* Exit the audio integration mode.
+	*/
+	[id(301), helpstring("method StopAudioMessageIntegration")] HRESULT StopAudioMessageIntegration();
+
+	/**
+	* Check if AutoConnect feature is active.
+	* \param pbVal				Return value.
+	*/
+	[propget, id(302), helpstring("property Chorus")] HRESULT Chorus([out, retval] VARIANT_BOOL* pbVal);
+
+	/**
+	* Enable or disable AutoConnect feature.
+	* \param bVal				New value.
+	*/
+	[propput, id(302), helpstring("property Chorus")] HRESULT Chorus([in] VARIANT_BOOL bVal);
+};
+/*@}*/
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(A2FAF806-7439-42fe-A75F-F9A5ABF2A663),
+	dual,
+	oleautomation,
+	nonextensible,
+	helpstring("IAudioPlayer Interface"),
+	pointer_default(unique),
+	oleautomation,
+	odl
+]
+/**
+* IAudioPlayer allows to play audio messages from history.
+*/
+interface IAudioPlayer : IDispatch
+{
+	/**
+	* Set current message.
+	* \param pVal					Return value.
+	*/
+	[propput, id(1), helpstring("property Message")] HRESULT Message([in] IAudioMessage* pVal);
+
+	/**
+	* Get current message.
+	* \param ppVal					Return value.
+	*/
+	[propget, id(1), helpstring("property Message")] HRESULT Message([out, retval] IAudioMessage** ppVal);
+
+	/**
+	* Play audio message.
+	*/
+	[id(2), helpstring("method Play")] HRESULT Play();
+
+	/**
+	* Stop playing message.
+	* \attention					This method is not currenty supported.
+	*/
+	[id(3), helpstring("method Stop")] HRESULT Stop();
+
+	/**
+	* Set playback position.
+	* \param iVal					New position, ms.
+	* \attention					This property is not currenty supported.
+	*/
+	[propput, id(4), helpstring("property Position")] HRESULT Position([in] int iVal);
+
+	/**
+	* Get current playback position.
+	* \param piVal					Return value, ms.
+	* \attention					This property is not currenty supported.
+	*/
+	[propget, id(4), helpstring("property Position")] HRESULT Position([out, retval] int* piVal);
+
+};
+/*@}*/
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(9C920E6D-49BC-4227-B36E-A3F6BADBB8AC),
+	dual,
+	oleautomation,
+	nonextensible,
+	helpstring("IAudioSource Interface"),
+	pointer_default(unique),
+	oleautomation,
+	odl
+]
+/**
+* IAudioStream represents an audio data stream object for integration between a radio gateway and third-party apps.
+*/
+interface IAudioStream : IDispatch
+{
+	/**
+	* Audio stream is starting.
+	* Wave format is always mono 16 bits, sample rate may vary.
+	* In the case of playing message audio through a third party app, it's called when an incoming message from a contact begins.
+	* In the case of sending audio message data coming from a third party app to a contact, it's called when an outgoing message to a contact begins.
+	* \param iSampleRate		Audio sample rate.
+	*/
+	[id(1), helpstring("method Start")] HRESULT Start([in] int iSampleRate);
+
+	/**
+	* Audio stream is stopping.
+	* In the case of playing message audio through a third party app, it's called when an incoming message from a contact is over.
+	* In the case of sending audio message data coming from a third party app to a contact, it's called when an outgoing message to a contact is over.
+	*/
+	[id(2), helpstring("method Stop")] HRESULT Stop();
+
+	/**
+	* Set playback position.
+	* \param iVal					SAFEARRAY(short) or IStream holding audio data chunk.
+	*/
+	[id(3), helpstring("method WriteSamples")] HRESULT WriteSamples([in] VARIANT vData);
+
+	/**
+	* Write audio data.
+	* \param piSampleRate			Sample rate used by Zello app to send/receive audio
+	*/
+	
+	[propget, id(4), helpstring("property NativeSampleRate")] HRESULT NativeSampleRate([out, retval] int* piSampleRate);
+
+
+};
+/*@}*/
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(C4E02A76-5B35-49a7-BC0A-239A07170AE5),
+	dual,
+	oleautomation,
+	nonextensible,
+	helpstring("IAudioMessagePlayback Interface"),
+	pointer_default(unique),
+	oleautomation,
+	odl
+]
+/**
+* IAudioMessagePlayback interface allows a client to play incoming messages through a third-party app.
+*/
+interface IAudioMessagePlayback : IDispatch
+{
+	/**
+	* Get audio sample rate that is preferred by a third party app. 
+	* Set value to 0 if resampling is not required. In this case the received audio streams may have different sample rates
+	* \param piSampleRate			Return value.
+	*/
+	[propget, id(1), helpstring("property NativeSampleRate")] HRESULT NativeSampleRate([out, retval] int* piSampleRate);
+	/**
+	* Fired when object starts receiving a message and needs to play it though a thirt-party app.
+	* \param pMessage				Message object. Can be used to get message ID, sender, author.
+	*								Can't be deleted or marked as read or unread.
+	* \param pStream				An object where the client will send the audio data.
+	*/
+	[id(2), helpstring("MessageInBegin")] HRESULT MessageInBegin([in] IMessage* pMessage, [out, retval] IAudioStream** pStream);
+}
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(597EA004-CE73-496e-8607-FA89A9EAE34A),
+	dual,
+	oleautomation,
+	nonextensible,
+	helpstring("IAudioMessageRecord Interface"),
+	pointer_default(unique),
+	oleautomation,
+	odl
+]
+/**
+* IAudioMessageRecord interface allows a client to initiate outgoing messages of external audio data.
+*/
+interface IAudioMessageRecord : IDispatch
+{
+	/**
+	* Create outgoing audio message and linked custom audio data stream
+	* \param pContact				A contact that the message is intended to be sent to.
+	* \param bstrExternalId			External message id.
+	* \param ppMessage				Returns a message object for the new outgoing message.
+	* \param ppStream				Returns an audio stream object that can be used to pass audio data to the client app.
+	*/
+	[id(1), helpstring("MessageOutBegin")] HRESULT MessageOutBegin([in] IContact* pContact, [in] BSTR bstrExternalId, [out] IMessage** ppMessage, [out, retval] IAudioStream** ppStream);
+	/**
+	* Create outgoing audio message and linked custom audio data stream. .
+	* \param Users					List of message recipients' ID's or names.
+	* \param bstrExternalId			External message id.
+	* \param ppMessage				Returns a message object for the new outgoing message.
+	* \param ppStream				Returns an audio stream object that can be used to pass audio data to the client app.
+	*/
+	[id(2), helpstring("MessageOutBeginEx")] HRESULT MessageOutBeginEx([in] SAFEARRAY (BSTR) Users, [in] BSTR bstrExternalId, [out] IMessage** ppMessage, [out, retval] IAudioStream** ppStream);
+}
+
+/// @cond PttLib
+[
+	uuid(7E28D927-9F0F-4cc6-9BD9-E095B1574CCC),
+	version(1.0),
+	helpstring("PTT 1.0 Type Library")
+]
+library PttLib
+{
+	importlib("stdole2.tlb");
+/// @endcond
+
+	/**
+	* \ingroup Interfaces
+	* @{
+	*/
+	[
+		uuid(6CCB765F-ADA5-4fea-9CEC-CF55360EA0CE),
+		helpstring("IPttEvents Interface"),
+		hidden
+	]
+	/**
+	* IPttEvents interface allows a client to receive events from control.
+	*/
+	dispinterface IPttEvents
+	{
+		properties:
+		methods:
+		/**
+		* Fired when sign-in process starts.
+		*/
+		[id(DISPID_ON_SIGN_IN_STARTED), helpstring("SignInStarted")] void SignInStarted();
+
+		/**
+		* Fired when sign-in process completes successfully.
+		*/
+		[id(DISPID_ON_SIGN_IN_SUCCEEDED), helpstring("SignInSucceeded")] void SignInSucceeded();
+
+		/**
+		* Fired when sign-in process fails.
+		*/
+		[id(DISPID_ON_SIGN_IN_FAILED), helpstring("SignInFailed")] void SignInFailed([in] CLIENT_ERROR ErrorCode);
+
+		/**
+		* Fired when client sign-out process starts.
+		*/
+		[id(DISPID_ON_SIGN_OUT_STARTED), helpstring("SignOutStarted")] void SignOutStarted();
+
+		/**
+		* Fired when client sign-out process is over.
+		*/
+		[id(DISPID_ON_SIGN_OUT_COMPLETE), helpstring("SignOutComplete")] void SignOutComplete();
+
+		/**
+		* Fired when user initiates sign in process using object controls (using status popup menu).
+		* Hosting application is supposed to initiate sign in process after this event is received.
+		*/
+		[id(DISPID_ON_SIGN_IN_REQUESTED), helpstring("SignInRequested")] void SignInRequested();
+
+		/**
+		* Fired to detect it hosting application can sign into network - that is, username and password are known.
+		* This is necessary to properly display "Online", "Away" etc commands' states in popup menus shown by control.
+		* \param pbVal				Return value. S_TRUE if unsername and password are available, S_FALSE otherwise.
+		*/
+		[id(DISPID_ON_GET_CAN_SIGN_IN), helpstring("GetCanSignIn")] void GetCanSignIn([in, out] VARIANT_BOOL* pbVal);
+
+		/**
+		* Fired after new server contact list is received.
+		*/
+		[id(DISPID_ON_CONTACT_LIST_CHANGED), helpstring("ContactListChanged")] void ContactListChanged();
+
+		/**
+		* Fired when message history changes.
+		*/
+		[id(DISPID_ON_HISTORY_CHANGED), helpstring("HistoryChanged")] void HistoryChanged();
+
+		/**
+		* Fired when object starts receiving a message.
+		* \param pMessage			Message object. Can be used to get message ID, sender, author.
+		*							Can't be deleted or marked as read or unread.
+		*/
+		[id(DISPID_ON_MESSAGE_IN_BEGIN), helpstring("MessageInBegin")] void MessageInBegin([in] IMessage* pMessage);
+
+		/**
+		* Fired when object stops receiving a message.
+		* \param pMessage			Message object. Can be used to get message ID, sender, author and other information.
+		*							Can't be deleted or marked as read or unread.
+		*/
+		[id(DISPID_ON_MESSAGE_IN_END), helpstring("MessageInEnd")] void MessageInEnd([in] IMessage* pMessage);
+
+		/**
+		* Fired when object starts sending a message to a contact.
+		* \param pMessage			Message object.
+		*							Can't be deleted or marked as read or unread.
+		* \param pContact			Receiver of the message.
+		*/
+		[id(DISPID_ON_MESSAGE_OUT_BEGIN), helpstring("MessageOutBegin")] void MessageOutBegin([in] IMessage* pMessage, [in] IContact* pContact);
+
+		/**
+		* Fired when object finishes sending a message to a contact.
+		* \param pMessage			Message object.
+		*							Can't be deleted or marked as read or unread.
+		* \param pContact			Receiver of the message.
+		*/
+		[id(DISPID_ON_MESSAGE_OUT_END), helpstring("MessageOutEnd")] void MessageOutEnd([in] IMessage* pMessage, [in] IContact* pContact);
+
+		/**
+		* Fired when object fails to start sending a message to a contact.
+		* \param pMessage			Message object.
+		*							Can't be deleted or marked as read or unread.
+		* \param pContact			Intended receiver of the message.
+		*/
+		[id(DISPID_ON_MESSAGE_OUT_ERROR), helpstring("MessageOutError")] void MessageOutError([in] IMessage* pMessage, [in] IContact* pContact);
+
+		/**
+		* Fired when incoming message is ready to start playing.
+		* \param pMessage			Message object. Can be used to get message ID, sender, author.
+		*							Can't be deleted or marked as read or unread.
+		* \param pbActivate			Return value. Set to S_FALSE if message must not be activated.
+		*/
+		[id(DISPID_ON_AUDIO_MESSAGE_IN_START), helpstring("AudioMessageInStart")] void AudioMessageInStart([in] IAudioInMessage* pMessage, [in, out] VARIANT_BOOL* pbActivate);
+
+		/**
+		* Fired when incoming message stops playing.
+		* \param pMessage			Message object. Can be used to get message ID, sender, author.
+		*							Can't be deleted or marked as read or unread.
+		*/
+		[id(DISPID_ON_AUDIO_MESSAGE_IN_STOP), helpstring("AudioMessageInStop")] void AudioMessageInStop([in] IAudioInMessage* pMessage);
+
+		/**
+		* Fired when player starts playing audio message.
+		* \param pMessage			Message object.
+		*/
+		[id(DISPID_ON_PLAYER_AUDIO_MESSAGE_START), helpstring("PlayerAudioMessageStart")] void PlayerAudioMessageStart([in] IAudioMessage* pMessage);
+
+		/**
+		* Fired when player stops playing audio message.
+		* \param pMessage			Message object.
+		*/
+		[id(DISPID_ON_PLAYER_AUDIO_MESSAGE_STOP), helpstring("PlayerAudioMessageStop")] void PlayerAudioMessageStop([in] IAudioMessage* pMessage);
+
+		/**
+		* Periodically fires by player during audio message playback.
+		* \param pMessage			Message object.
+		* \param iProgress			Playback position, ms.
+		*/
+		[id(DISPID_ON_PLAYER_AUDIO_MESSAGE_PROGRESS), helpstring("PlayerAudioMessageProgress")] void PlayerAudioMessageProgress([in] IAudioMessage* pMessage, [in] int iProgress);
+	};
+	/*@}*/
+
+	/// @cond PTTControl
+	[
+		uuid(8316A274-C3CE-46ae-9121-CB8E4080D0DB),
+		control,
+		helpstring("PTT Control")
+	]
+	coclass Ptt
+	{
+		[default] interface IPtt;
+		[default, source] dispinterface IPttEvents;
+	};
+	/// @endcond
+	interface ISettings2;
+	interface ISettings3;
+	interface IPtt2;
+	interface IPtt3;
+	interface IPtt4;
+	interface INetwork2;
+	interface IAudioDevices;
+	interface IAudioStream;
+/// @cond PttLib_
+	typedef [public, hidden] IUser IUser_;
+	typedef [public, hidden] IGroup IGroup_;
+	typedef [public, hidden] IChannel IChannel_;
+	typedef [public, hidden] IMessage IMessage_;
+	typedef [public, hidden] IAudioMessage IAudioMessage_;
+	typedef [public, hidden] IAudioInMessage IAudioInMessage_;
+	typedef [public, hidden] IAudioOutMessage IAudioOutMessage_;
+	typedef [public, hidden] PTT_EVENTS PTT_EVENTS_;
+};
+/// @endcond
