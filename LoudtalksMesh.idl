@@ -1,8 +1,8 @@
 /**
 * \mainpage
-* Zello\@Work Client SDK for Windows allows to integrate
-* your Windows application or web-page with full-featured Zello\@Work client application.
-* Key part of this SDK is ActiveX control which is as functional as standalone Zello\@Work client application.
+* Zello for Work Client SDK for Windows allows to integrate
+* your Windows application or web-page with full-featured Zello for Work client application.
+* Key part of this SDK is ActiveX control which is as functional as standalone Zello for Work client application.
 * You can use Visual C++, Visual Basic, Visual C# or any other programming language supporting hosting of ActiveX controls.
 * For information on Zello server API please check http://zello.com/api/.
 *
@@ -1611,7 +1611,7 @@ interface IAudioStream : IDispatch
 
 	/**
 	* Set playback position.
-	* \param iVal					SAFEARRAY(short) or IStream holding audio data chunk.
+	* \param vData					SAFEARRAY(short) or IStream holding audio data chunk.
 	*/
 	[id(3), helpstring("method WriteSamples")] HRESULT WriteSamples([in] VARIANT vData);
 
