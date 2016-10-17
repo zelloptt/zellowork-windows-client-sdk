@@ -1,0 +1,90 @@
+[OPTIONS]
+Compiled file=..\ZelloForWork.chm
+Compatibility=1.1
+Full-text search=Yes
+Contents file=index.hhc
+Default Window=main
+Default topic=index.html
+Index file=index.hhk
+Language=0x409 English (United States)
+Title=Zello for Work Client SDK
+
+[WINDOWS]
+main="Zello for Work Client SDK","index.hhc","index.hhk","index.html","index.html",,,,,0x23520,,0x10387e,,,,,,,,0
+
+[FILES]
+group___enums.html
+group___interfaces.html
+interface_i_audio_devices.html
+interface_i_audio_devices-members.html
+interface_i_audio_in_message.html
+interface_i_audio_in_message-members.html
+interface_i_audio_message.html
+interface_i_audio_message-members.html
+interface_i_audio_message_playback.html
+interface_i_audio_message_playback-members.html
+interface_i_audio_message_record.html
+interface_i_audio_message_record-members.html
+interface_i_audio_out_message.html
+interface_i_audio_out_message-members.html
+interface_i_audio_player.html
+interface_i_audio_player-members.html
+interface_i_audio_stream.html
+interface_i_audio_stream-members.html
+interface_i_channel.html
+interface_i_channel-members.html
+interface_i_contact.html
+interface_i_contact-members.html
+interface_i_contacts.html
+interface_i_contacts-members.html
+interface_i_customization.html
+interface_i_customization-members.html
+interface_i_group.html
+interface_i_group-members.html
+interface_i_history.html
+interface_i_history-members.html
+interface_i_message.html
+interface_i_message-members.html
+interface_i_network.html
+interface_i_network-members.html
+interface_i_network2.html
+interface_i_network2-members.html
+interface_i_ptt.html
+interface_i_ptt-members.html
+interface_i_ptt2.html
+interface_i_ptt2-members.html
+interface_i_ptt3.html
+interface_i_ptt3-members.html
+interface_i_ptt4.html
+interface_i_ptt4-members.html
+interface_i_ptt_events.html
+interface_i_ptt_events-members.html
+interface_i_settings.html
+interface_i_settings-members.html
+interface_i_settings2.html
+interface_i_settings2-members.html
+interface_i_settings3.html
+interface_i_settings3-members.html
+interface_i_user.html
+interface_i_user-members.html
+index.html
+modules.html
+annotated.html
+classes.html
+hierarchy.html
+functions.html
+functions_func.html
+functions_prop.html
+tab_a.png
+tab_b.png
+tab_h.png
+tab_s.png
+nav_h.png
+nav_f.png
+bc_s.png
+doxygen.png
+closed.png
+open.png
+bdwn.png
+sync_on.png
+sync_off.png
