@@ -158,12 +158,6 @@ namespace SoundSample
                     System.Runtime.InteropServices.Marshal.FinalReleaseComObject(strm);
                     strm = null;
 
-                    //if (m_Reader.HasMoreData)
-                    //{
-                    //    Array arr = m_Reader.GetNextAudioChunkArray(nSamples);
-                    //    while (false == PushSamples(arr))
-                    //        Thread.Sleep(20);
-                    //}
                 } while (wavDataProvider.HasMoreData);
             }
             catch (COMException)

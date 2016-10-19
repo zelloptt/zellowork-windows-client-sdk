@@ -15,7 +15,7 @@ namespace SoundSample
 		AxPttLib.AxPtt axMesh;
         PttLib.IContacts contactsMesh;
         PttLib.IAudioMessageRecord m_AudRecorder;
-        AudioMessagePlaybackImpl m_AudPlayback;//PttLib.IAudioMessagePlayback
+        AudioMessagePlaybackImpl m_AudPlayback;
         List<String> lstForwardContactIds = new List<string>();
         List<AudioMessageRecording> lstOutMessages = new List<AudioMessageRecording>();
         private Timer tmUpdateOnlineContacts = new Timer();
@@ -706,7 +706,6 @@ namespace SoundSample
                 CReadWavFile wf = new CReadWavFile(sWavToSend);
                 PttLib.IContacts cnts = axMesh.Contacts;
                 PttLib.IMessage msg = null;
-                //PttLib.IContact cnt = null;
                 List<string> lst = new List<string>();
                 foreach (object chk in cbSendAudioFile.CheckedItems)
                 {
@@ -714,21 +713,15 @@ namespace SoundSample
                     if (ci != null)
                     {
                         lst.Add(ci.id);
-                        //cnt = cnts.Find(ci.id);
-                        //if (cnt != null)
-                        //    break;
                     }
                 }
-                //if (cnt != null)
                 if (lst.Count > 0)
                 {
-                    //PttLib.IAudioStream strm = m_AudRecorder.MessageOutBegin(cnt, string.Empty, out msg);
                     PttLib.IAudioStream strm = m_AudRecorder.MessageOutBeginEx(lst.ToArray(), string.Empty, out msg);
                     AudioMessageRecording rec = new AudioMessageRecording(wf);
                     rec.AllDataWritten += new EventHandler(Recording_AllDataWritten);
                     lstOutMessages.Add(rec);
                     rec.SetStream(strm);
-
                 }
             }
         }
@@ -798,16 +791,11 @@ namespace SoundSample
                 if (m_AudRecorder != null && wb != null && contactsMesh!=null)
                 {
                     PttLib.IMessage msg = null;
-                    //PttLib.IContact cnt = null;
                     List<string> lst = new List<string>();
                     foreach (string id in lstForwardContactIds)
                     {
                         lst.Add(id);
-                        //cnt = contactsMesh.Find(id);
-                        //if (cnt != null)
-                        //    break;
                     }
-                    //if (cnt != null)
                     if (lst.Count > 0)
                     {
                         PttLib.IAudioStream strm = m_AudRecorder.MessageOutBeginEx(lst.ToArray(), string.Empty, out msg);
@@ -820,21 +808,6 @@ namespace SoundSample
 
             });
         }
-
-        //private void checkBoxFA_CheckedChanged(object sender, EventArgs e)
-        //{
-        //    if (checkBoxFA.Checked == false)
-        //    {
-        //        lstForwardContactIds.Clear();
-        //        foreach (int idx in cbForwardAudio.CheckedIndices)
-        //            cbForwardAudio.SetItemCheckState(idx, CheckState.Unchecked);
-        //        if (this.m_AudPlayback != null)
-        //            m_AudPlayback.bForwardAudio = false;
-        //        cbForwardAudio.Enabled = false;
-        //    }
-        //    else
-        //        cbForwardAudio.Enabled = true;
-        //}
 
         private void cbEnableAI_CheckedChanged(object sender, EventArgs e)
         {
@@ -862,7 +835,6 @@ namespace SoundSample
         private void UpdateIntegrationControlsState()
         {
             cbSaveMessages.Enabled = cbEnableAI.Checked;
-            //checkBoxFA.Enabled = cbEnableAI.Checked;
             btnSelect.Enabled = cbEnableAI.Checked && cbSaveMessages.Checked;
             cbSendAudioFile.Enabled = cbEnableAI.Checked;
             btnWavBrowse.Enabled = cbEnableAI.Checked;

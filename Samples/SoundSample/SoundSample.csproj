@@ -62,14 +62,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AudioBufferImpl.cs">
-    </Compile>
-    <Compile Include="AudioIntegration.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AudioIntegration.Designer.cs">
-      <DependentUpon>AudioIntegration.cs</DependentUpon>
-    </Compile>
     <Compile Include="AudioMessagePlaybackImpl.cs" />
     <Compile Include="AudioMessageRecording.cs" />
     <Compile Include="AudioStreamImpl.cs" />
@@ -81,9 +73,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AudioIntegration.resx">
-      <DependentUpon>AudioIntegration.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form.resx">
       <DependentUpon>Form.cs</DependentUpon>
     </EmbeddedResource>
@@ -121,7 +110,6 @@
     <Compile Include="WavBuffer.cs" />
     <Compile Include="WriteWav.cs" />
     <Compile Include="ZelloFromFile.cs" />
-    <Compile Include="ZelloToFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
