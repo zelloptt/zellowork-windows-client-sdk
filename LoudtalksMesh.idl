@@ -1,10 +1,10 @@
 /**
 * \mainpage
-* Zello for Work Client SDK for Windows allows to integrate
-* your Windows application or web-page with full-featured Zello for Work client application.
-* Key part of this SDK is ActiveX control which is as functional as standalone Zello for Work client application.
+* ZelloWork Client SDK for Windows allows to integrate
+* your Windows application or web-page with full-featured ZelloWork client application.
+* Key part of this SDK is ActiveX control which is as functional as standalone ZelloWork client application.
 * You can use Visual C++, Visual Basic, Visual C# or any other programming language supporting hosting of ActiveX controls.
-* For information on Zello server API please check http://zello.com/api/.
+* For information on Zello server API please check https://zello.com/api/.
 *
 * @link Enums Enumeration Type Documentation@endlink
 *

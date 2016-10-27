@@ -1,5 +1,5 @@
 [OPTIONS]
-Compiled file=..\ZelloForWork.chm
+Compiled file=..\ZelloWork.chm
 Compatibility=1.1
 Full-text search=Yes
 Contents file=index.hhc
@@ -7,10 +7,10 @@ Default Window=main
 Default topic=index.html
 Index file=index.hhk
 Language=0x409 English (United States)
-Title=Zello for Work Client SDK
+Title=ZelloWork Client SDK
 
 [WINDOWS]
-main="Zello for Work Client SDK","index.hhc","index.hhk","index.html","index.html",,,,,0x23520,,0x10387e,,,,,,,,0
+main="ZelloWork Client SDK","index.hhc","index.hhk","index.html","index.html",,,,,0x23520,,0x10387e,,,,,,,,0
 
 [FILES]
 group___enums.html
@@ -67,6 +67,7 @@ interface_i_settings3.html
 interface_i_settings3-members.html
 interface_i_user.html
 interface_i_user-members.html
+dir_ca6309d378ceffb9970caf11a0592736.html
 index.html
 modules.html
 annotated.html
