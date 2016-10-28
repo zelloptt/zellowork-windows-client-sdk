@@ -40,7 +40,8 @@ embedding Zello ActiveX control into a web-page. Use Internet Explorer to view t
 ###Sample4.exe
 Win32 C++ application for Windows Mobile. This one is a bit tricky. To test it you have to copy the file and ptt.dll from ‘mobile’ subfolder to the mobile device and register ptt.dll there using regsvrce.exe utility.
 
-![alt text](Screenshots/Sample3-1.png "Description goes here")
+![alt text](Screenshots/Sample4-1.png "Offline mode")
+![alt text](Screenshots/Sample4-2.png "Online mode")
 
 ###Sample5.exe
 Win32 C++ application for Windows implementing custom GUI
@@ -51,12 +52,13 @@ Win32 C++ application for Windows implementing custom GUI
 ###Sample6.exe 
 .NET 2.0 C# application for Windows Mobile
 
-![alt text](Screenshots/Sample3-1.png "Description goes here")
+![alt text](Screenshots/Sample6-1.jpg "Offline mode")
+![alt text](Screenshots/Sample6-2.jpg "Online mode")
 
 ###Sample7.exe 
 Visual Basic 6 application for Windows using ActiveX control
 
-![alt text](Screenshots/Sample3-1.png "Description goes here")
+![alt text](Screenshots/Sample7-1.png "Description goes here")
 
 ###SoundSample.exe 
 .NET 2.0 C# application implementing audio integration interfaces.
