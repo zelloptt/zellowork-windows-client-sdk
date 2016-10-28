@@ -5,9 +5,9 @@ Version: 2.12
 Date: Nov 1, 2016
 
 ### Introduction
-Thanks for downloading Zello for Work SDK. It’s designed to enable easy integration of push-to-talk function into any application. This document will guide you through the installation and use of the SDK.
+Thanks for downloading ZelloWork SDK. It’s designed to enable easy integration of push-to-talk function into any application. This document will guide you through the installation and use of the SDK.
 ### Technology
-Zello for Work SDK provides ActiveX wrapper exposing the required set of Zello client functions. It’s designed to work with Zello Enterprise server or with Zello for Work managed service.  
+ZelloWork SDK provides ActiveX wrapper exposing the required set of Zello client functions. It’s designed to work with Zello Enterprise server or with ZelloWork managed service.  
 ### Installation
 You need a Windows PC to use the SDK. To install the SDK launch the [ZelloWorkClientSDKSetup.exe](./ZelloWorkClientSDKSetup.exe) and follow the installation wizard:
 
