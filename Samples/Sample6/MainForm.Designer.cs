@@ -47,9 +47,9 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.MenuItem();
             this.menuItem2 = new System.Windows.Forms.MenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.MenuItem();
+            this.changeAudioDeviceToolStripMenuItem = new System.Windows.Forms.MenuItem();
             this.comboUsername = new System.Windows.Forms.ComboBox();
             this.labelError = new System.Windows.Forms.Label();
-            this.changeAudioDeviceToolStripMenuItem = new System.Windows.Forms.MenuItem();
             this.SuspendLayout();
             // 
             // buttonSignIn
@@ -107,12 +107,12 @@
             this.menuItem1.MenuItems.Add(this.menuItem3);
             this.menuItem1.MenuItems.Add(this.historyToolStripMenuItem);
             this.menuItem1.MenuItems.Add(this.changePasswordToolStripMenuItem);
+            this.menuItem1.MenuItems.Add(this.changeAudioDeviceToolStripMenuItem);
             this.menuItem1.MenuItems.Add(this.settingsToolStripMenuItem);
             this.menuItem1.MenuItems.Add(this.helpWebToolStripMenuItem);
             this.menuItem1.MenuItems.Add(this.aboutToolStripMenuItem);
             this.menuItem1.MenuItems.Add(this.menuItem2);
             this.menuItem1.MenuItems.Add(this.exitToolStripMenuItem);
-            this.menuItem1.MenuItems.Add(this.changeAudioDeviceToolStripMenuItem);
             this.menuItem1.Text = "Menu";
             // 
             // signInToolStripMenuItem
@@ -177,6 +177,11 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // changeAudioDeviceToolStripMenuItem
+            // 
+            this.changeAudioDeviceToolStripMenuItem.Text = "Change audio...";
+            this.changeAudioDeviceToolStripMenuItem.Click += new System.EventHandler(this.menuItemAD_Click);
+            // 
             // comboUsername
             // 
             this.comboUsername.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
@@ -204,11 +209,6 @@
             this.labelError.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.labelError.Visible = false;
             // 
-            // changeAudioDeviceToolStripMenuItem
-            // 
-            this.changeAudioDeviceToolStripMenuItem.Text = "Change audio...";
-            this.changeAudioDeviceToolStripMenuItem.Click += new System.EventHandler(this.menuItemAD_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -224,7 +224,7 @@
             this.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular);
             this.Menu = this.menu;
             this.Name = "MainForm";
-            this.Text = "LoudtalksMesh Sample";
+            this.Text = "PTT Sample 6";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Closing += new System.ComponentModel.CancelEventHandler(this.MainForm_Closing);
             this.ResumeLayout(false);
