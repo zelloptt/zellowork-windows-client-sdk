@@ -1,4 +1,4 @@
-# Zello Work client SDK for Windows
+# ZelloWork client SDK for Windows
 *Push-to-talk SDK for your Windows or Windows Mobile application*
 
 Version: 2.12
@@ -12,7 +12,7 @@ Zello for Work SDK provides ActiveX wrapper exposing the required set of Zello c
 You need a Windows PC to use the SDK. To install the SDK launch the [ZelloWorkClientSDKSetup.exe](./ZelloWorkClientSDKSetup.exe) and follow the installation wizard:
 
 
-![alt text](Screenshots/Setup.png "Description goes here")
+![Installation wizard start page](Screenshots/Setup.png "Installation wizard start page")
 
 
 The SDK installs samples, documentation and registers ActiveX control (ptt.dll). Once installed you can access SDK items from Start menu.
@@ -23,19 +23,19 @@ Before digging into the code you can try the compiled samples, which are located
 ###Sample1.exe 
 *Win32 C++ application for Windows using ActiveX control*
 
-![alt text](Screenshots/Sample1-1.png "Description goes here")
-![alt text](Screenshots/Sample1-2.png "Description goes here")
+![Offline view](Screenshots/Sample1-1.png "Offline mode")
+![Online view](Screenshots/Sample1-2.png "Online mode")
 
 ###Sample2.htm 
 embedding Zello ActiveX control into a web-page. Use Internet Explorer to view this sample. 
 
-![alt text](Screenshots/Sample2-1.png "Description goes here")
+![ZelloWork in IE browser](Screenshots/Sample2-1.png "ZelloWork in IE browser")
 
 ###Sample3.exe 
 .NET application for Windows using ActiveX control
 
-![alt text](Screenshots/Sample3-1.png "Description goes here")
-![alt text](Screenshots/Sample3-2.png "Description goes here")
+![alt text](Screenshots/Sample3-1.png "Offline mode")
+![alt text](Screenshots/Sample3-2.png "Online mode")
 
 ###Sample4.exe
 Win32 C++ application for Windows Mobile. This one is a bit tricky. To test it you have to copy the file and ptt.dll from ‘mobile’ subfolder to the mobile device and register ptt.dll there using regsvrce.exe utility.
@@ -59,12 +59,15 @@ Visual Basic 6 application for Windows using ActiveX control
 ![alt text](Screenshots/Sample3-1.png "Description goes here")
 
 ###SoundSample.exe 
-.NET 2.0 C# application 
+.NET 2.0 C# application implementing audio integration interfaces.
+If integration mode is active, ActiveX control doesn't use playback and rendering audio devices.
+Host app receives uncompressed PCM audio stream for each incoming message, and provides custom PCM audio stream for each outgoing message.
+If chorus mode is active, all incoming audio messages playback starts right on receive, while in normal mode playback performs consequently, one by one.
 
 ![alt text](Screenshots/SoundSample.png "Description goes here")
 
 The samples are compiled for the use with ‘default.zellowork.com’ Zello for Work network. You can use any of the following login / password pairs to sign in:
-
+```
 test / test
 test2 / test
 test3 / test
@@ -73,7 +76,7 @@ test5 / test
 test6 / test
 test7 / test
 test8 / test
-
+```
 Please note that this network / usernames is intended for quick test only. For your development you’ll need to register your own free Zello for Work network.
 
 ##Exploring the code
@@ -97,7 +100,7 @@ a.	All other samples require Visual Studio 2008 or later
 
 ###Step 3. Check out documentation
 
-1.	Explore [ZelloForWork.chm](ZelloForWork.chm) installed with the SDK to see the interfaces available to your application
+1.	Explore [ZelloWork.chm](ZelloWork.chm) installed with the SDK to see the interfaces available to your application
 2.	Contact us if you have any questions or can’t find the API method you need
 
 ##Deploying your application
