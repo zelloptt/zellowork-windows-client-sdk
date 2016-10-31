@@ -1,15 +1,15 @@
 # ZelloWork client SDK for Windows
 *Push-to-talk SDK for your Windows or Windows Mobile application*
 
-Version: 2.12
-Date: Nov 1, 2016
+Version: 2.12<br>
+Date: November 1, 2016
 
 ### Introduction
 Thanks for downloading ZelloWork SDK. It’s designed to enable easy integration of push-to-talk function into any application. This document will guide you through the installation and use of the SDK.
 ### Technology
 ZelloWork SDK provides ActiveX wrapper exposing the required set of Zello client functions. It’s designed to work with Zello Enterprise server or with ZelloWork managed service.  
 ### Installation
-You need a Windows PC to use the SDK. To install the SDK launch the [ZelloWorkClientSDKSetup.exe](./ZelloWorkClientSDKSetup.exe) and follow the installation wizard:
+You need a Windows PC to use the SDK. To install the SDK launch the [ZelloWorkClientSDKSetup.exe](https://github.com/zelloptt/zellowork-windows-client-sdk/blob/master/ZelloWorkClientSDKSetup.exe?raw=true) and follow the installation wizard:
 
 
 ![Installation wizard start page](Screenshots/Setup.png "Installation wizard start page")
@@ -23,8 +23,8 @@ Before digging into the code you can try the compiled samples, which are located
 ###Sample1.exe 
 *Win32 C++ application for Windows using ActiveX control*
 
-![Offline view](Screenshots/Sample1-1.png "Offline mode")
-![Online view](Screenshots/Sample1-2.png "Online mode")
+![Offline view](Screenshots/Sample1-1.png "Sample1.exe sign in screen")
+![Online view](Screenshots/Sample1-2.png "Sample1.exe contact list")
 
 ###Sample2.htm 
 embedding Zello ActiveX control into a web-page. Use Internet Explorer to view this sample. 
@@ -34,41 +34,42 @@ embedding Zello ActiveX control into a web-page. Use Internet Explorer to view t
 ###Sample3.exe 
 .NET application for Windows using ActiveX control
 
-![alt text](Screenshots/Sample3-1.png "Offline mode")
-![alt text](Screenshots/Sample3-2.png "Online mode")
+![alt text](Screenshots/Sample3-1.png "Sample3.exe sign in screen")
+![alt text](Screenshots/Sample3-2.png "Sample3.exe contact list")
 
 ###Sample4.exe
 Win32 C++ application for Windows Mobile. This one is a bit tricky. To test it you have to copy the file and ptt.dll from ‘mobile’ subfolder to the mobile device and register ptt.dll there using regsvrce.exe utility.
 
-![alt text](Screenshots/Sample4-1.png "Offline mode")
-![alt text](Screenshots/Sample4-2.png "Online mode")
+![alt text](Screenshots/Sample4-1.png "Sample4.exe sign in screen")
+![alt text](Screenshots/Sample4-2.png "Sample4.exe contact list")
 
 ###Sample5.exe
 Win32 C++ application for Windows implementing custom GUI
 
-![alt text](Screenshots/Sample5-1.png "Description goes here")
-![alt text](Screenshots/Sample5-2.png "Description goes here")
+![alt text](Screenshots/Sample5-1.png "Sample5.exe sign in screen")
+![alt text](Screenshots/Sample5-2.png "Sample5.exe contact list")
 
 ###Sample6.exe 
 .NET 2.0 C# application for Windows Mobile
 
-![alt text](Screenshots/Sample6-1.jpg "Offline mode")
-![alt text](Screenshots/Sample6-2.jpg "Online mode")
+![alt text](Screenshots/Sample6-1.jpg "Sample6.exe sign in screen")
+![alt text](Screenshots/Sample6-2.jpg "Sample6.exe contact list")
 
 ###Sample7.exe 
 Visual Basic 6 application for Windows using ActiveX control
 
-![alt text](Screenshots/Sample7-1.png "Description goes here")
+![alt text](Screenshots/Sample7-1.png "Sample7.exe main screen")
 
 ###SoundSample.exe 
 .NET 2.0 C# application implementing audio integration interfaces.
-If integration mode is active, ActiveX control doesn't use playback and rendering audio devices.
-Host app receives uncompressed PCM audio stream for each incoming message, and provides custom PCM audio stream for each outgoing message.
-If chorus mode is active, all incoming audio messages playback starts right on receive, while in normal mode playback performs consequently, one by one.
+If integration mode is active, ActiveX control doesn't use playback and rendering hardware audio devices.
+Instead host app receives uncompressed PCM audio stream for each incoming message, and provides custom PCM audio stream for each outgoing message.
+If chorus mode is active, all incoming audio messages are activated concurrently on receive, while in normal mode they are activate sequentially, one by one, similar to how Zello client normally works.
 
-![alt text](Screenshots/SoundSample.png "Description goes here")
+![alt text](Screenshots/SoundSample.png "SoundSample.exe main screen")
 
 The samples are compiled for the use with ‘default.zellowork.com’ Zello for Work network. You can use any of the following login / password pairs to sign in:
+
 ```
 test / test
 test2 / test
@@ -102,7 +103,7 @@ a.	All other samples require Visual Studio 2008 or later
 
 ###Step 3. Check out documentation
 
-1.	Explore [ZelloWork.chm](ZelloWork.chm) installed with the SDK to see the interfaces available to your application
+1.	Explore [ZelloWork.chm](ZelloWork.chm) installed with the SDK or [online reference](https://zelloptt.github.io/zellowork-windows-client-sdk/) to see the interfaces available to your application
 2.	Contact us if you have any questions or can’t find the API method you need
 
 ##Deploying your application
@@ -114,4 +115,4 @@ When deploying your application make sure that the following conditions are met:
   b.	ptt.dll located in the ‘mobile’ subfolder is intended for Windows Mobile
 
 ##Additional resources
-For more information visit our website at [www.zello.com](https://www.zello.com) or send an e-mail to support@zello.com 
+For more information visit our website at [zellowork.com](https://zellowork.com) or send an e-mail to [support@zello.com](mailto:support@zello.com) 
