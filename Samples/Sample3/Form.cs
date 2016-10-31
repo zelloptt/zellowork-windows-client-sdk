@@ -124,9 +124,9 @@ namespace Sample3
                 axMesh.PlayerAudioMessageStop += new AxPttLib.IPttEvents_PlayerAudioMessageStopEventHandler(axMesh_PlayerAudioMessageStop);
                 axMesh.PlayerAudioMessageProgress += new AxPttLib.IPttEvents_PlayerAudioMessageProgressEventHandler(axMesh_PlayerAudioMessageProgress);
 				// Configure Loudtalks Mesh network parameters
-                axMesh.Network.NetworkName = "taximaster";//"zukabra";
-                axMesh.Network.LoginServer = "taximaster.loudtalks.net";
-                axMesh.Network.WebServer = "http://taximaster.zellowork.com";
+                axMesh.Network.NetworkName = "default";//"zukabra";
+                axMesh.Network.LoginServer = "default.loudtalks.net";
+                axMesh.Network.WebServer = "http://default.zellowork.com";
                 //PttLib.INetwork2 ntw2 = axMesh.Network as PttLib.INetwork2;
                 //if (ntw2 != null)
                 //    ntw2.EnableTls("tls.zellowork.com");

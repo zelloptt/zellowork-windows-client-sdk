@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Reflection.AssemblyVersion("1.0.0.0")]
-[assembly: System.Windows.Forms.AxHost.TypeLibraryTimeStamp("20.10.2016 5:22:01")]
+[assembly: System.Windows.Forms.AxHost.TypeLibraryTimeStamp("29.10.2016 1:51:38")]
 
 namespace AxPttLib {
     
