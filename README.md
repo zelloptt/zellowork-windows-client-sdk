@@ -114,5 +114,12 @@ When deploying your application make sure that the following conditions are met:
   a.	ptt.dll located in the SDK root folder is intended for Windows
   b.	ptt.dll located in the ‘mobile’ subfolder is intended for Windows Mobile
 
+## Going live with your Zello-enabled app
+All apps using Zello SDK must adhere to the following guidelines:
+
+* All UI screens, embedding Zello SDK must include Zello logo
+* Use Zello logo and / or "Zello", "ZelloWork" names, when referencing to Zello inside of your app
+* [Send us the app for review](https://zellowork.com/contact/) before distributing the app to any third parties or customers
+
 ##Additional resources
 For more information visit our website at [zellowork.com](https://zellowork.com) or send an e-mail to [support@zello.com](mailto:support@zello.com) 
