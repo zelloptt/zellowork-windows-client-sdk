@@ -124,12 +124,12 @@ namespace Sample3
                 axMesh.PlayerAudioMessageStop += new AxPttLib.IPttEvents_PlayerAudioMessageStopEventHandler(axMesh_PlayerAudioMessageStop);
                 axMesh.PlayerAudioMessageProgress += new AxPttLib.IPttEvents_PlayerAudioMessageProgressEventHandler(axMesh_PlayerAudioMessageProgress);
 				// Configure Loudtalks Mesh network parameters
-                axMesh.Network.NetworkName = "default";//"zukabra";
-                axMesh.Network.LoginServer = "default.loudtalks.net";
+				axMesh.Network.NetworkName = "default";
+				axMesh.Network.LoginServer = "default.loudtalks.net";
                 axMesh.Network.WebServer = "http://default.zellowork.com";
-                //PttLib.INetwork2 ntw2 = axMesh.Network as PttLib.INetwork2;
-                //if (ntw2 != null)
-                //    ntw2.EnableTls("tls.zellowork.com");
+                PttLib.INetwork2 ntw2 = axMesh.Network as PttLib.INetwork2;
+                if (ntw2 != null)
+                    ntw2.EnableTls("tls.zellowork.com");
 				// Customize using embedded oem.config
 				System.Array OemConfig = Resource.oem_config;
 				axMesh.Customization.set_OemConfigData(ref OemConfig);
