@@ -56,6 +56,7 @@
   <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga58ec4aa3eec43ccb1d2dd4ade7d33c66a699303b7a76004fba5f5ad4d21d4bba9"><param name="Name" value="CL_SignUpServerUnavailable"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga58ec4aa3eec43ccb1d2dd4ade7d33c66abb46093e6887cb60d2b47f2e817d6872"><param name="Name" value="CL_SignUpWeeklyRateExceeded"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga58ec4aa3eec43ccb1d2dd4ade7d33c66a67093fbb826d6e8efd204553c0a4bd44"><param name="Name" value="CL_SuperNodeError"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga58ec4aa3eec43ccb1d2dd4ade7d33c66a981bd1eb239fc684bc73395843bf08d8"><param name="Name" value="CL_TlsRequired"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga58ec4aa3eec43ccb1d2dd4ade7d33c66a0d8d0a4ff0e5fc780a415864ea08b259"><param name="Name" value="CL_UnknownError"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga58ec4aa3eec43ccb1d2dd4ade7d33c66ac0f18f98a2d118386bb45466319e301c"><param name="Name" value="CL_WrongNetwork"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_ptt.html#aee3b6d0011a45ab16a4425f11a8c8dde"><param name="Name" value="CloseHistory"></OBJECT>
@@ -377,6 +378,7 @@
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html#gga58ec4aa3eec43ccb1d2dd4ade7d33c66a699303b7a76004fba5f5ad4d21d4bba9"><param name="Name" value="CL_SignUpServerUnavailable"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html#gga58ec4aa3eec43ccb1d2dd4ade7d33c66abb46093e6887cb60d2b47f2e817d6872"><param name="Name" value="CL_SignUpWeeklyRateExceeded"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html#gga58ec4aa3eec43ccb1d2dd4ade7d33c66a67093fbb826d6e8efd204553c0a4bd44"><param name="Name" value="CL_SuperNodeError"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html#gga58ec4aa3eec43ccb1d2dd4ade7d33c66a981bd1eb239fc684bc73395843bf08d8"><param name="Name" value="CL_TlsRequired"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html#gga58ec4aa3eec43ccb1d2dd4ade7d33c66a0d8d0a4ff0e5fc780a415864ea08b259"><param name="Name" value="CL_UnknownError"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html#gga58ec4aa3eec43ccb1d2dd4ade7d33c66ac0f18f98a2d118386bb45466319e301c"><param name="Name" value="CL_WrongNetwork"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html#gga650a733cba01c76b0bfa68238b9b0e41a5d01dc024f58f41d9237cff66920f004"><param name="Name" value="CTCHANNEL"></OBJECT>
