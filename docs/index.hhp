@@ -15,10 +15,14 @@ main="ZelloWork Client SDK","index.hhc","index.hhk","index.html","index.html",,,
 [FILES]
 group___enums.html
 group___interfaces.html
+interface_i_alert_message.html
+interface_i_alert_message-members.html
 interface_i_audio_devices.html
 interface_i_audio_devices-members.html
 interface_i_audio_in_message.html
 interface_i_audio_in_message-members.html
+interface_i_audio_in_message2.html
+interface_i_audio_in_message2-members.html
 interface_i_audio_message.html
 interface_i_audio_message-members.html
 interface_i_audio_message_playback.html
@@ -27,6 +31,8 @@ interface_i_audio_message_record.html
 interface_i_audio_message_record-members.html
 interface_i_audio_out_message.html
 interface_i_audio_out_message-members.html
+interface_i_audio_out_message2.html
+interface_i_audio_out_message2-members.html
 interface_i_audio_player.html
 interface_i_audio_player-members.html
 interface_i_audio_stream.html
@@ -65,6 +71,10 @@ interface_i_settings2.html
 interface_i_settings2-members.html
 interface_i_settings3.html
 interface_i_settings3-members.html
+interface_i_settings4.html
+interface_i_settings4-members.html
+interface_i_shared_image.html
+interface_i_shared_image-members.html
 interface_i_user.html
 interface_i_user-members.html
 dir_ca6309d378ceffb9970caf11a0592736.html

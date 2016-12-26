@@ -201,9 +201,139 @@ enum MESSAGE_TYPE
 {
 	/** Audio. */
 	MTAUDIO		= 0,
+	/** Call alert */
+	MTALERT		= 1,
+	/** Shared image */
+	MTIMAGE		= 1,
 }
 /// @cond MESSAGE_TYPE
 MESSAGE_TYPE
+/// @endcond
+;
+/*@}*/
+
+/**
+* \ingroup Enums
+* @{
+* Setting ids.
+*/
+typedef [v1_enum]
+enum SETTING_ID
+{
+	/** "WriteLog" Write diagnostic log (Boolean)*/
+	ST_WRITE_LOG			= 0,
+	/** "EnablePolyphony" Audio mix mode (Boolean)*/
+	ST_CHORUS_MODE			= 1,
+
+	/** "PlaybackDevice" Audio playback device id (String)*/
+	ST_AUD_DEV_PLAYBACK		= 10,
+	/** "RecordingDevice" Audio recording device id (String)*/
+	ST_AUD_DEV_RECORDING	= 11,
+	/** Playback audio device volume (integer, [0..100]). */
+	ST_AUD_PLAYBACK_VOLUME	= 12,
+	/** Recording audio device volume (integer, [0..100]). */
+	ST_AUD_RECORDING_VOLUME	= 13,
+	/** "PlaybackAmplifierGain" Playback audio device amplification value (integer, [-20..20]dB). */
+	ST_AUD_PLAYBACK_AMPL	= 14,
+	/** "RecordAmplifierGain" Recording audio device amplification value (integer, [-20..20]dB). */
+	ST_AUD_RECORDING_AMPL	= 15,
+	/** "Denoise" Noise supression (Boolean). */
+	ST_AUD_NOISE_SUPP		= 16,
+
+	/* "AutoawayEnabled" Change status to away when idle (Boolean)*/
+	ST_IFC_AUTO_AWAY		= 20,
+	/* "Autoaway" Idle timeout (Integer, minutes)*/
+	ST_IFC_AUTO_AWAY_TIME	= 21,
+	/* "NotifyIncoming" Display notification while receiving message (Boolean)*/
+	ST_IFC_INC_NOTIFY		= 22,
+	/* "NotifyOutgoing" Display notification while &sending message (Boolean)*/
+	ST_IFC_OUT_NOTIFY		= 23,
+	/* "NotificationLeft" Notification bar left position (Integer)*/
+	ST_IFC_NOTIFY_LEFT		= 24,
+	/* "NotificationTop" Notification bar top position (Integer)*/
+	ST_IFC_NOTIFY_TOP		= 25,
+	/* "VibrateWhenBusy" Vibrate when Away or Busy (Boolean)*/
+	ST_IFC_VIBRATE_BUSY		= 26,
+	/* "VibrateOnCTS" Vibrate when ready to send (Boolean)*/
+	ST_IFC_VIBRATE_CTS		= 27,
+	/* "ImagesRestricted" Receive images from contacts and channels (Boolean)*/
+	ST_IFC_RCV_IMAGES		= 28,
+	/* "language" Language file name (String)*/
+	ST_IFC_LANG				= 29,
+
+	/** "VoxEnabled" Enable VOX (Boolean)*/
+	ST_VOX_ENABLE			= 40,
+	/** "ActivationThreshold" Activation threshold (Integer, [-80..0]dB)*/
+	ST_VOX_ACTIVATION		= 41,
+	/** "DeactivationThreshold" De-activation threshold (Integer, [-80..0]dB)*/
+	ST_VOX_DEACTIVATION		= 42,
+	/** "TriggerTime" Trigger time (Integer, ms)*/
+	ST_VOX_TRIGGER_TIME		= 43,
+	/** "RelaxationTime" Relaxation time (Integer, ms)*/
+	ST_VOX_RELAX_TIME		= 44,
+	/** "SaveVoxState" Save VOX contact between sessions (Boolean)*/
+	ST_VOX_SAVE_STATE		= 45,
+
+	/** "HotKeySpeak" Push-to-talk (Integer,keycode)*/
+	ST_CTRL_PTT_KEYCODE		= 50,
+	/** "HotKeyLock" Handsfree (Integer,keycode)*/
+	ST_CTRL_LOCK_KEYCODE	= 51,
+	/** "HotKeyReplay" Repeat last message (Integer,keycode)*/
+	ST_CTRL_REPLAY_KEYCODE	= 52,
+	/** "HotKeyChorus" Switch mixing (Integer,keycode)*/
+	ST_CTRL_SWITCH_CHORUS	= 53,
+	/** "WakeFromIdleSoundPath" New conversation alert (String,path)*/
+	ST_CTRL_WAKE_SOUND		= 54,
+	/** "IncomingTransmissionSoundPath" Incoming message alert (String,path)*/
+	ST_CTRL_INC_SOUND		= 55,
+	/** "CTSSoundPath" Clear to send alert (String,path)*/
+	ST_CTRL_CTS_SOUND		= 56,
+	/** "OverSoundPath" Incoming message ended alert (String,path)*/
+	ST_CTRL_INC_OVER_SOUND	= 57,
+	/** "ErrorSoundPath" Connection error alert (String,path)*/
+	ST_CTRL_ERROR_SOUND		= 58,
+	/** "PttUpSoundPath" Outgoing message ended alert (String,path)*/
+	ST_CTRL_OUT_OVER_SOUND	= 59,
+	/** "CallAlertSoundPath" Call alert (String,path)*/
+	ST_CTRL_ALERT_SOUND		= 60,
+	/** "SharedImageSoundPath" Shared image alert (String,path)*/
+	ST_CTRL_IMAGE_SOUND		= 61,
+
+	/** "DisableTls" Disable TLS (Boolean)*/
+	ST_NTW_NO_TLS			= 70,
+	/** "UseOnlyTcp" Use only TCP connection (Boolean)*/
+	ST_NTW_TCP_ONLY			= 71,
+	/** "UdpKeepAlive" UDP keep-alive period (Integer,ms)*/
+	ST_NTW_RLKA				= 72,
+	/** "KeepAlive" Keep-alive period (Integer,ms)*/
+	ST_NTW_SNKA				= 73,
+	/** "ProxyEnable" Use proxy server (Boolean)*/
+	ST_NTW_USE_PROXY		= 74,
+	/** "ProxyType" Use HTTP(S) or SOCKS5 proxy server (String, HTTP(S) or SOCKS5)*/
+	ST_NTW_PROXY_TYPE		= 75,
+	/** "ProxyServer" Proxy server and port (String,'ip:port')*/
+	ST_NTW_PROXY_SERVER		= 76,
+	/** "ProxyEnableAuth" Turn on proxy authentication (Boolean)*/
+	ST_NTW_USE_PROXY_AUTH	= 77,
+	/** "ProxyAuthUsername" Turn on proxy authentication (Boolean)*/
+	ST_NTW_PROXY_UNAME		= 78,
+	/** "ProxyAuthPassword" Turn on proxy authentication (Boolean)*/
+	ST_NTW_PROXY_PWD		= 79,
+
+	/** "CodecPacketsPerSecond" Codec packets per second (Integer,[5, 50])*/
+	ST_CDC_PACKETS			= 90,
+	/** "CodecQuality" Codec quality (Integer,[0, 10])*/
+	ST_CDC_QUALITY			= 91,
+	/** "CodecComplexity" Codec Complexity (Integer,[0, 10])*/
+	ST_CDC_COMPLEXITY		= 92,
+	/** "CodecPacketLossRate" Codec packet loss rate (Integer,[0, 100])*/
+	ST_CDC_PACKET_LOSS_RATE	= 93,
+	/** "CodecEnableVbr" Enable VBR (Boolean)*/
+	ST_CDC_ENABLE_VBR		= 94
+}
+
+/// @cond SETTING_ID
+SETTING_ID
 /// @endcond
 ;
 /*@}*/
@@ -310,6 +440,149 @@ interface IMessage : IDispatch
 */
 [
 	object,
+	uuid(F4CCB942-F285-4646-A116-F6301C459318),
+	dual,
+	oleautomation,
+	helpstring("IAlertMessage Interface"),
+	pointer_default(unique)
+]
+/**
+* Interface representing call alert message.
+*/
+interface IAlertMessage : IMessage
+{
+	/**
+	* Get alert text.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(2001), helpstring("property Text")] HRESULT Text([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get alert external id.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(2002), helpstring("property ExternalId")] HRESULT ExternalId([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get alert sender.
+	* If alert has been received from a channel or a group then 'Author' property can be used to get alert author.
+	* \param ppVal			Return value.
+	*/
+	[propget, id(2003), helpstring("property Sender")] HRESULT Sender([out, retval] IContact** ppVal);
+
+	/**
+	* Get alert author for messages received from channels and groups.
+	* No author is returned for alerts received from users.
+	* \param ppVal			Return value.
+	*/
+	[propget, id(2004), helpstring("property Author")] HRESULT Author([out, retval] IContact** ppVal);
+
+	/**
+	* Get full author name.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(2005), helpstring("property FullName")] HRESULT FullName([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get crosslink.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(2006), helpstring("property Crosslink")] HRESULT Crosslink([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get name of the author from crosslink network.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(2007), helpstring("property CrosslinkAuthor")] HRESULT CrosslinkAuthor([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get display name of the author from crosslink network.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(2008), helpstring("property CrosslinkAuthorDisplayName")] HRESULT CrosslinkAuthorDisplayName([out, retval] BSTR* pbstrVal);
+
+};
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(BB89FA86-BC29-4953-94FC-1F8830858BEB),
+	dual,
+	oleautomation,
+	helpstring("ISharedImage Interface"),
+	pointer_default(unique)
+]
+/**
+* Interface representing shared image.
+*/
+interface ISharedImage : IMessage
+{
+	/**
+	* Save shared image to specified path.
+	* \param bstrFilePath			Image will be saved to the specified folder and name.
+	*/
+	[id(2001), helpstring("method SaveToFile")] HRESULT SaveToFile([in] BSTR bstrFilePath);
+
+	/**
+	* Save image to the valid IStream object.
+	* \param pStream				Return value.
+	*/
+	[id(2002), helpstring("method SaveToStream")] HRESULT SaveToStream([in] IStream* pStream);
+
+	/**
+	* Get shared image external id.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(2003), helpstring("property ExternalId")] HRESULT ExternalId([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get message sender.
+	* If message sender is a channel or a group then IAudioInMessage::Author property can be used to get message author.
+	* \param ppVal			Return value.
+	*/
+	[propget, id(2004), helpstring("property Sender")] HRESULT Sender([out, retval] IContact** ppVal);
+
+	/**
+	* Get message author for messages that come from channels and groups.
+	* No author is returned for messages that come from users.
+	* \param ppVal			Return value.
+	*/
+	[propget, id(2005), helpstring("property Author")] HRESULT Author([out, retval] IContact** ppVal);
+
+	/**
+	* Get full author name.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(2006), helpstring("property FullName")] HRESULT FullName([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get crosslink.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(2007), helpstring("property Crosslink")] HRESULT Crosslink([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get name of the author from crosslink network.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(2008), helpstring("property CrosslinkAuthor")] HRESULT CrosslinkAuthor([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get display name of the author from crosslink network.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(2009), helpstring("property CrosslinkAuthorDisplayName")] HRESULT CrosslinkAuthorDisplayName([out, retval] BSTR* pbstrVal);
+};
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
 	uuid(E0434039-64D0-4849-A62A-E780D3EA9E57),
 	dual,
 	oleautomation,
@@ -366,6 +639,48 @@ interface IAudioInMessage : IAudioMessage
 */
 [
 	object,
+	uuid(A2990A6C-F294-4d7f-88C9-99E384102CE4),
+	dual,
+	oleautomation,
+	helpstring("IAudioInMessage2 Interface"),
+	pointer_default(unique)
+]
+/**
+* Interface allows to get the external id
+*/
+interface IAudioInMessage2 : IAudioInMessage
+{
+	/**
+	* Get external id.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(100), helpstring("property ExternalId")] HRESULT ExternalId([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get crosslink.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(101), helpstring("property Crosslink")] HRESULT Crosslink([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get name of the author from crosslink network.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(102), helpstring("property CrosslinkAuthor")] HRESULT CrosslinkAuthor([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get display name of the author from crosslink network.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(103), helpstring("property CrosslinkAuthorDisplayName")] HRESULT CrosslinkAuthorDisplayName([out, retval] BSTR* pbstrVal);
+};
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
 	uuid(D77F9C22-8689-4a75-851C-9D9C64E23D67),
 	dual,
 	oleautomation,
@@ -382,6 +697,30 @@ interface IAudioOutMessage : IAudioMessage
 	* \param ppVal			Return value.
 	*/
 	[propget, id(1), helpstring("property Recipients")] HRESULT Recipients([out, retval] IContacts** ppVal);
+};
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(0EA8C648-D310-4b62-ABFC-00C71A39DA82),
+	dual,
+	oleautomation,
+	helpstring("IAudioInMessage2 Interface"),
+	pointer_default(unique)
+]
+/**
+* Interface allows to get the external id
+*/
+interface IAudioOutMessage2 : IAudioOutMessage
+{
+	/**
+	* Get external id.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(100), helpstring("property ExternalId")] HRESULT ExternalId([out, retval] BSTR* pbstrVal);
 };
 
 /**
@@ -1123,6 +1462,38 @@ interface ISettings3 : ISettings2
 */
 [
 	object,
+	uuid(63481916-16C0-490b-BA2A-62364B400E9F),
+	dual,
+	oleautomation,
+	helpstring("ISettings4 Interface"),
+	pointer_default(unique)
+]
+/**
+* ISettings4 interface extends ISettings3, allows to change all object settings by name or id.
+*/
+interface ISettings4 : ISettings3
+{
+	/**
+	* Get setting value by id.
+	* \param settId			Setting id.
+	* \param pvtVal			Return value.
+	*/
+	[id(300), helpstring("property GetValue")] HRESULT GetValue([in] SETTING_ID settId,[out, retval] VARIANT* pvtVal);
+
+	/**
+	* Update setting value by id.
+	* \param settId			Setting id.
+	* \param vtVal			New value.
+	*/
+	[id(303), helpstring("property SetValue")] HRESULT SetValue([in] SETTING_ID settId,[in] VARIANT vtVal);
+};
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
 	uuid(DD8FD727-E041-4FEA-8415-156E3CCA1E6A),
 	dual,
 	oleautomation,
@@ -1784,9 +2155,10 @@ library PttLib
 		[id(DISPID_ON_MESSAGE_IN_BEGIN), helpstring("MessageInBegin")] void MessageInBegin([in] IMessage* pMessage);
 
 		/**
-		* Fired when object stops receiving a message.
+		* Fired when object stops receiving a message : audio, call alert or shared image
 		* \param pMessage			Message object. Can be used to get message ID, sender, author and other information.
-		*							Can't be deleted or marked as read or unread.
+		*							Can't be deleted or marked as read or unread. Can be downcasted to IAudioMessage, 
+		*							IAlertMessage or ISharedImage
 		*/
 		[id(DISPID_ON_MESSAGE_IN_END), helpstring("MessageInEnd")] void MessageInEnd([in] IMessage* pMessage);
 
@@ -1864,12 +2236,17 @@ library PttLib
 	/// @endcond
 	interface ISettings2;
 	interface ISettings3;
+	interface ISettings4;
 	interface IPtt2;
 	interface IPtt3;
 	interface IPtt4;
 	interface INetwork2;
 	interface IAudioDevices;
 	interface IAudioStream;
+	interface IAudioInMessage2;
+	interface IAudioOutMessage2;
+	interface IAlertMessage;
+	interface ISharedImage;
 /// @cond PttLib_
 	typedef [public, hidden] IUser IUser_;
 	typedef [public, hidden] IGroup IGroup_;
@@ -1877,6 +2254,7 @@ library PttLib
 	typedef [public, hidden] IMessage IMessage_;
 	typedef [public, hidden] IAudioMessage IAudioMessage_;
 	typedef [public, hidden] IAudioInMessage IAudioInMessage_;
+	typedef [public, hidden] IAudioInMessage2 IAudioInMessage2_;
 	typedef [public, hidden] IAudioOutMessage IAudioOutMessage_;
 	typedef [public, hidden] PTT_EVENTS PTT_EVENTS_;
 };

@@ -283,14 +283,25 @@ namespace Sample3
 
 		public void axMesh_MessageInBegin(object sender, AxPttLib.IPttEvents_MessageInBeginEvent e)
 		{
-			if(e.pMessage != null)
+			if(e.pMessage != null && e.pMessage.Type==PttLib.MESSAGE_TYPE.MTAUDIO)
 			{
 				PttLib.IAudioInMessage pMessage = (PttLib.IAudioInMessage)e.pMessage;
 				if (pMessage != null)
 				{
 					PttLib.IContact pContact = pMessage.Sender;
-					if (pContact != null)
-						Debug.WriteLine("Incoming message " + e.pMessage.Id + " from " + pContact.Name + " begins");
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("Incoming message [").Append(e.pMessage.Id).Append("]");
+					if (pContact != null) {
+                        if(false==String.IsNullOrEmpty(pContact.Name))
+						    sb.Append(" from ").Append(pContact.Name);
+                    }
+                    PttLib.IAudioInMessage2 pMessage2 = pMessage as PttLib.IAudioInMessage2;
+                    if (pMessage2 != null)
+                    {
+                        if (false == String.IsNullOrEmpty(pMessage2.ExternalId))
+                            sb.Append("; External id [").Append(pMessage2.ExternalId).Append("]");
+                    }
+                    Debug.WriteLine(sb.ToString());
 				}
 			}
 		}
@@ -299,14 +310,65 @@ namespace Sample3
 		{
 			if (e.pMessage != null)
 			{
-				PttLib.IAudioInMessage pMessage = (PttLib.IAudioInMessage) e.pMessage;
-				if (pMessage != null)
-				{
-					PttLib.IContact pContact = pMessage.Sender;
-					if (pContact != null)
-						Debug.WriteLine("Incoming message " + e.pMessage.Id + " from " + pContact.Name + " ends, duration " + pMessage.Duration);
-				}
-			}
+                if (e.pMessage.Type == PttLib.MESSAGE_TYPE.MTAUDIO)
+                {
+                    PttLib.IAudioInMessage pMessage = (PttLib.IAudioInMessage)e.pMessage;
+                    if (pMessage != null)
+                    {
+                        PttLib.IContact pContact = pMessage.Sender;
+                        if (pContact != null)
+                            Debug.WriteLine("Received message " + e.pMessage.Id + " from " + pContact.Name + " ends, duration " + pMessage.Duration);
+                        PttLib.IAudioInMessage2 pMessage2 = pMessage as PttLib.IAudioInMessage2;
+                    }
+                }
+                else if (e.pMessage.Type == PttLib.MESSAGE_TYPE.MTALERT)
+                {
+                    PttLib.IAlertMessage pAlert = e.pMessage as PttLib.IAlertMessage;
+                    if (null != pAlert)
+                    {
+                        PttLib.IContact pSender = pAlert.Sender;
+                        PttLib.IContact pAuthor = pAlert.Author;
+                        StringBuilder sb = new StringBuilder();
+                        sb.Append("Received alert '").Append(pAlert.Text).Append(" from ");
+                        if (pAuthor != null)
+                        {
+                            if (false == String.IsNullOrEmpty(pAuthor.Name))
+                                sb.Append(pAuthor.Name).Append(" > ");
+                        }
+                        if (pSender != null)
+                        {
+                            if (false == String.IsNullOrEmpty(pSender.Name))
+                                sb.Append(pSender.Name);
+                        }
+                        if (false == String.IsNullOrEmpty(pAlert.ExternalId))
+                            sb.Append("; External id [").Append(pAlert.ExternalId).Append("]");
+                        Debug.WriteLine(sb.ToString());
+                    }
+                }
+                else if (e.pMessage.Type == PttLib.MESSAGE_TYPE.MTIMAGE)
+                {
+                    PttLib.ISharedImage pImage = e.pMessage as PttLib.ISharedImage;
+                    if (null != pImage)
+                    {
+                        PttLib.IContact pSender = pImage.Sender;
+                        PttLib.IContact pAuthor = pImage.Author;
+                        StringBuilder sb = new StringBuilder();
+                        pImage.SaveToFile(@"C:\Images\incoming.jpg");
+                        sb.Append("Received image from ");
+                        if (pAuthor != null) {
+                            if (false == String.IsNullOrEmpty(pAuthor.Name))
+                                sb.Append(pAuthor.Name).Append(" > ");
+                        }
+                        if (pSender != null) {
+                            if (false == String.IsNullOrEmpty(pSender.Name))
+                                sb.Append(pSender.Name);
+                        }
+                        if (false == String.IsNullOrEmpty(pImage.ExternalId))
+                            sb.Append("; External id [").Append(pImage.ExternalId).Append("]");
+                        Debug.WriteLine(sb.ToString());
+                    }
+                }
+            }
 		}
 
 		public void axMesh_MessageOutBegin(object sender, AxPttLib.IPttEvents_MessageOutBeginEvent e)
@@ -430,8 +492,24 @@ namespace Sample3
 		private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			// "About" menu command was activated
-			if (axMesh != null)
-				axMesh.ShowAboutDialog(0);
+			//if (axMesh != null)
+			//	axMesh.ShowAboutDialog(0);
+            PttLib.IContact cnt = axMesh.Contacts.Find("test1");
+            PttLib.IPtt4 ptt = axMesh.GetOcx() as PttLib.IPtt4;
+            ptt.UpdateSoloContact(cnt);
+            StringBuilder sb = new StringBuilder();
+            PttLib.IHistory his = axMesh.get_History("test2");
+            int nCount = his.Count;
+            sb.Append("History contains ").Append(nCount).AppendLine(" messages");
+            for(int idx = 0; idx < nCount; ++idx) {
+                PttLib.IMessage msg = his.get_Item(idx);
+                sb.Append("#").Append(idx+1).Append(":").Append(msg.CreationTime.ToShortTimeString()).Append(msg.Read ? "[read] " : "[new ] ");
+                PttLib.IAudioInMessage msgIn = msg as PttLib.IAudioInMessage;
+                if(msgIn != null)
+                    sb.Append(msgIn.Duration).Append("ms");
+                sb.AppendLine();
+            }
+            MessageBox.Show(sb.ToString());
 		}
 
 		private void buttonSignIn_Click(object sender, EventArgs e)
@@ -462,6 +540,32 @@ namespace Sample3
 			if (e.KeyCode == Keys.Return)
 				signInToolStripMenuItem_Click(sender, e);
 		}
+
+        private void setMaxAudioVolumeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PttLib.ISettings4 sett = axMesh.Settings as PttLib.ISettings4;
+            if (sett != null)
+            {
+                sett.SetValue(PttLib.SETTING_ID.ST_AUD_PLAYBACK_AMPL, 10);
+                sett.SetValue(PttLib.SETTING_ID.ST_AUD_RECORDING_AMPL, 10);
+                sett.SetValue(PttLib.SETTING_ID.ST_AUD_NOISE_SUPP, true);
+                sett.SetValue(PttLib.SETTING_ID.ST_AUD_PLAYBACK_VOLUME, 100);
+                sett.SetValue(PttLib.SETTING_ID.ST_AUD_RECORDING_VOLUME, 100);
+            }
+        }
+
+        private void setMinAudioVolumeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PttLib.ISettings4 sett = axMesh.Settings as PttLib.ISettings4;
+            if (sett != null)
+            {
+                sett.SetValue(PttLib.SETTING_ID.ST_AUD_PLAYBACK_AMPL, -10);
+                sett.SetValue(PttLib.SETTING_ID.ST_AUD_RECORDING_AMPL, -10);
+                sett.SetValue(PttLib.SETTING_ID.ST_AUD_NOISE_SUPP, false);
+                sett.SetValue(PttLib.SETTING_ID.ST_AUD_PLAYBACK_VOLUME, 10);
+                sett.SetValue(PttLib.SETTING_ID.ST_AUD_RECORDING_VOLUME, 10);
+            }
+        }
 
 	}
 }

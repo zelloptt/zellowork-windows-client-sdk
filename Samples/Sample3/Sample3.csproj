@@ -137,6 +137,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
     <COMReference Include="AxPttLib">
       <Guid>{7E28D927-9F0F-4CC6-9BD9-E095B1574CCC}</Guid>
       <VersionMajor>1</VersionMajor>
