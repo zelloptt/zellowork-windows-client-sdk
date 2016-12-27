@@ -83,6 +83,7 @@
       </UL>
     <LI><OBJECT type="text/sitemap"><param name="Name" value="SETTING_ID"><param name="Local" value="group___enums.html#ga0a932a58b2ddc5353f0409a1e4237bb8"><param name="ImageNumber" value="1"></OBJECT>
       <UL>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="ST_VERSION"><param name="Local" value="group___enums.html#gga0a932a58b2ddc5353f0409a1e4237bb8af2cdce29eec4b3fe3db6692d60a431e4"><param name="ImageNumber" value="11"></OBJECT>
       <LI><OBJECT type="text/sitemap"><param name="Name" value="ST_WRITE_LOG"><param name="Local" value="group___enums.html#gga0a932a58b2ddc5353f0409a1e4237bb8a71a49c884947eb6b86d3888e33e7cd7e"><param name="ImageNumber" value="11"></OBJECT>
       <LI><OBJECT type="text/sitemap"><param name="Name" value="ST_CHORUS_MODE"><param name="Local" value="group___enums.html#gga0a932a58b2ddc5353f0409a1e4237bb8a1354254bf66b5fc01f027c773eed83fc"><param name="ImageNumber" value="11"></OBJECT>
       <LI><OBJECT type="text/sitemap"><param name="Name" value="ST_AUD_DEV_PLAYBACK"><param name="Local" value="group___enums.html#gga0a932a58b2ddc5353f0409a1e4237bb8a0edc9e4561782bef874a52f599f3359d"><param name="ImageNumber" value="11"></OBJECT>

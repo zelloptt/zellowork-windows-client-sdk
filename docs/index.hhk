@@ -508,6 +508,7 @@
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html#gga0a932a58b2ddc5353f0409a1e4237bb8a5ecdb802a1f867d8eb2bbf9de02e060d"><param name="Name" value="ST_NTW_TCP_ONLY"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html#gga0a932a58b2ddc5353f0409a1e4237bb8a80e02e28b44c19c4018e808e0f0479c6"><param name="Name" value="ST_NTW_USE_PROXY"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html#gga0a932a58b2ddc5353f0409a1e4237bb8a4de6fc8e31104be41e380cba3b096861"><param name="Name" value="ST_NTW_USE_PROXY_AUTH"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html#gga0a932a58b2ddc5353f0409a1e4237bb8af2cdce29eec4b3fe3db6692d60a431e4"><param name="Name" value="ST_VERSION"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html#gga0a932a58b2ddc5353f0409a1e4237bb8adc0505bfdfd9f3ce229448e21a394bc8"><param name="Name" value="ST_VOX_ACTIVATION"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html#gga0a932a58b2ddc5353f0409a1e4237bb8a82e37edbea20ddde07091491ee695ad1"><param name="Name" value="ST_VOX_DEACTIVATION"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html#gga0a932a58b2ddc5353f0409a1e4237bb8ab9431f0c7754fae433659089d95a7a18"><param name="Name" value="ST_VOX_ENABLE"></OBJECT>
@@ -656,6 +657,7 @@
   <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga0a932a58b2ddc5353f0409a1e4237bb8a5ecdb802a1f867d8eb2bbf9de02e060d"><param name="Name" value="ST_NTW_TCP_ONLY"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga0a932a58b2ddc5353f0409a1e4237bb8a80e02e28b44c19c4018e808e0f0479c6"><param name="Name" value="ST_NTW_USE_PROXY"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga0a932a58b2ddc5353f0409a1e4237bb8a4de6fc8e31104be41e380cba3b096861"><param name="Name" value="ST_NTW_USE_PROXY_AUTH"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga0a932a58b2ddc5353f0409a1e4237bb8af2cdce29eec4b3fe3db6692d60a431e4"><param name="Name" value="ST_VERSION"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga0a932a58b2ddc5353f0409a1e4237bb8adc0505bfdfd9f3ce229448e21a394bc8"><param name="Name" value="ST_VOX_ACTIVATION"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga0a932a58b2ddc5353f0409a1e4237bb8a82e37edbea20ddde07091491ee695ad1"><param name="Name" value="ST_VOX_DEACTIVATION"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga0a932a58b2ddc5353f0409a1e4237bb8ab9431f0c7754fae433659089d95a7a18"><param name="Name" value="ST_VOX_ENABLE"></OBJECT>

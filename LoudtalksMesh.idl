@@ -220,10 +220,12 @@ MESSAGE_TYPE
 typedef [v1_enum]
 enum SETTING_ID
 {
+	/** Get module version (String, readonly)*/
+	ST_VERSION				= 0,
 	/** "WriteLog" Write diagnostic log (Boolean)*/
-	ST_WRITE_LOG			= 0,
+	ST_WRITE_LOG			= 1,
 	/** "EnablePolyphony" Audio mix mode (Boolean)*/
-	ST_CHORUS_MODE			= 1,
+	ST_CHORUS_MODE			= 2,
 
 	/** "PlaybackDevice" Audio playback device id (String)*/
 	ST_AUD_DEV_PLAYBACK		= 10,
@@ -1469,7 +1471,7 @@ interface ISettings3 : ISettings2
 	pointer_default(unique)
 ]
 /**
-* ISettings4 interface extends ISettings3, allows to change all object settings by name or id.
+* ISettings4 interface extends ISettings3, allows to read and update the config settings by id.
 */
 interface ISettings4 : ISettings3
 {
