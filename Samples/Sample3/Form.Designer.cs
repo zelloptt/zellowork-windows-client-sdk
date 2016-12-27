@@ -53,8 +53,7 @@
             this.comboUsername = new System.Windows.Forms.ComboBox();
             this.labelError = new System.Windows.Forms.Label();
             this.buttonSignIn = new System.Windows.Forms.Button();
-            this.setMaxAudioVolumeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.setMinAudioVolumeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.audioOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,26 +84,26 @@
             // signInToolStripMenuItem
             // 
             this.signInToolStripMenuItem.Name = "signInToolStripMenuItem";
-            this.signInToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.signInToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.signInToolStripMenuItem.Text = "Sign in";
             this.signInToolStripMenuItem.Click += new System.EventHandler(this.signInToolStripMenuItem_Click);
             // 
             // signOutToolStripMenuItem
             // 
             this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
-            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.signOutToolStripMenuItem.Text = "Sign out";
             this.signOutToolStripMenuItem.Click += new System.EventHandler(this.signOutToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(115, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -122,26 +121,26 @@
             // historyToolStripMenuItem
             // 
             this.historyToolStripMenuItem.Name = "historyToolStripMenuItem";
-            this.historyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.historyToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.historyToolStripMenuItem.Text = "History...";
             this.historyToolStripMenuItem.Click += new System.EventHandler(this.historyToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(120, 6);
             // 
             // normalToolStripMenuItem
             // 
             this.normalToolStripMenuItem.Name = "normalToolStripMenuItem";
-            this.normalToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.normalToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.normalToolStripMenuItem.Text = "Normal";
             this.normalToolStripMenuItem.Click += new System.EventHandler(this.normalToolStripMenuItem_Click);
             // 
             // compactToolStripMenuItem
             // 
             this.compactToolStripMenuItem.Name = "compactToolStripMenuItem";
-            this.compactToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.compactToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.compactToolStripMenuItem.Text = "Compact";
             this.compactToolStripMenuItem.Click += new System.EventHandler(this.compactToolStripMenuItem_Click);
             // 
@@ -151,8 +150,7 @@
             this.changePasswordToolStripMenuItem,
             this.toolStripMenuItem2,
             this.optionsToolStripMenuItem,
-            this.setMaxAudioVolumeToolStripMenuItem,
-            this.setMinAudioVolumeToolStripMenuItem});
+            this.audioOptionsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -282,19 +280,12 @@
             this.buttonSignIn.UseVisualStyleBackColor = true;
             this.buttonSignIn.Click += new System.EventHandler(this.buttonSignIn_Click);
             // 
-            // setMaxAudioVolumeToolStripMenuItem
+            // audioOptionsToolStripMenuItem
             // 
-            this.setMaxAudioVolumeToolStripMenuItem.Name = "setMaxAudioVolumeToolStripMenuItem";
-            this.setMaxAudioVolumeToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.setMaxAudioVolumeToolStripMenuItem.Text = "Set Max Audio Volume";
-            this.setMaxAudioVolumeToolStripMenuItem.Click += new System.EventHandler(this.setMaxAudioVolumeToolStripMenuItem_Click);
-            // 
-            // setMinAudioVolumeToolStripMenuItem
-            // 
-            this.setMinAudioVolumeToolStripMenuItem.Name = "setMinAudioVolumeToolStripMenuItem";
-            this.setMinAudioVolumeToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.setMinAudioVolumeToolStripMenuItem.Text = "Set Min Audio Volume";
-            this.setMinAudioVolumeToolStripMenuItem.Click += new System.EventHandler(this.setMinAudioVolumeToolStripMenuItem_Click);
+            this.audioOptionsToolStripMenuItem.Name = "audioOptionsToolStripMenuItem";
+            this.audioOptionsToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.audioOptionsToolStripMenuItem.Text = "Audio options...";
+            this.audioOptionsToolStripMenuItem.Click += new System.EventHandler(this.audioOptionsToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -347,9 +338,8 @@
         private System.Windows.Forms.Label labelError;
 		private System.Windows.Forms.Button buttonSignIn;
 		private System.Windows.Forms.ToolStripMenuItem historyToolStripMenuItem;
-		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem setMaxAudioVolumeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem setMinAudioVolumeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem audioOptionsToolStripMenuItem;
     }
 }
 

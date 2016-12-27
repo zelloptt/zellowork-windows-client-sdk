@@ -492,24 +492,8 @@ namespace Sample3
 		private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			// "About" menu command was activated
-			//if (axMesh != null)
-			//	axMesh.ShowAboutDialog(0);
-            PttLib.IContact cnt = axMesh.Contacts.Find("test1");
-            PttLib.IPtt4 ptt = axMesh.GetOcx() as PttLib.IPtt4;
-            ptt.UpdateSoloContact(cnt);
-            StringBuilder sb = new StringBuilder();
-            PttLib.IHistory his = axMesh.get_History("test2");
-            int nCount = his.Count;
-            sb.Append("History contains ").Append(nCount).AppendLine(" messages");
-            for(int idx = 0; idx < nCount; ++idx) {
-                PttLib.IMessage msg = his.get_Item(idx);
-                sb.Append("#").Append(idx+1).Append(":").Append(msg.CreationTime.ToShortTimeString()).Append(msg.Read ? "[read] " : "[new ] ");
-                PttLib.IAudioInMessage msgIn = msg as PttLib.IAudioInMessage;
-                if(msgIn != null)
-                    sb.Append(msgIn.Duration).Append("ms");
-                sb.AppendLine();
-            }
-            MessageBox.Show(sb.ToString());
+			if (axMesh != null)
+				axMesh.ShowAboutDialog(0);
 		}
 
 		private void buttonSignIn_Click(object sender, EventArgs e)
@@ -564,6 +548,16 @@ namespace Sample3
                 sett.SetValue(PttLib.SETTING_ID.ST_AUD_NOISE_SUPP, false);
                 sett.SetValue(PttLib.SETTING_ID.ST_AUD_PLAYBACK_VOLUME, 10);
                 sett.SetValue(PttLib.SETTING_ID.ST_AUD_RECORDING_VOLUME, 10);
+            }
+        }
+
+        private void audioOptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PttLib.ISettings4 sett = axMesh.Settings as PttLib.ISettings4;
+            if (sett != null)
+            {
+                AudioSettingsForm asf = new AudioSettingsForm(sett);
+                asf.ShowDialog(this);
             }
         }
 

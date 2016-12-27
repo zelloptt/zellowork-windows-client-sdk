@@ -62,6 +62,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AudioSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AudioSettingsForm.Designer.cs">
+      <DependentUpon>AudioSettingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AudioSettingsForm.resx">
+      <DependentUpon>AudioSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form.resx">
       <DependentUpon>Form.cs</DependentUpon>
     </EmbeddedResource>
