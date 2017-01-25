@@ -1,0 +1,5 @@
+*.user
+Samples/bin/Debug/
+Samples/Temp/
+Samples/Samples.ncb
+Samples/Samples.suo
