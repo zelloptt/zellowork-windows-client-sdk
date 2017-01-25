@@ -64,11 +64,11 @@ Visual Basic 6 application for Windows using ActiveX control
 .NET 2.0 C# application implementing audio integration interfaces.
 If integration mode is active, ActiveX control doesn't use playback and rendering hardware audio devices.
 Instead host app receives uncompressed PCM audio stream for each incoming message, and provides custom PCM audio stream for each outgoing message.
-If chorus mode is active, all incoming audio messages are activated concurrently on receive, while in normal mode they are activate sequentially, one by one, similar to how Zello client normally works.
+If chorus mode is active, all incoming audio messages are activated concurrently on receive, while in normal mode they are activate sequentially, one by one, similar to how ZelloWork client normally works.
 
 ![alt text](Screenshots/SoundSample.png "SoundSample.exe main screen")
 
-The samples are compiled for the use with ‘default.zellowork.com’ Zello for Work network. You can use any of the following login / password pairs to sign in:
+The samples are compiled for the use with ‘default.zellowork.com’ ZelloWork network. You can use any of the following login / password pairs to sign in:
 
 ```
 test / test
@@ -80,11 +80,11 @@ test6 / test
 test7 / test
 test8 / test
 ```
-Please note that this network / usernames is intended for quick test only. For your development you’ll need to register your own free Zello for Work network.
+Please note that this network / usernames is intended for quick test only. For your development you’ll need to register your own free ZelloWork network.
 
 ##Exploring the code
 
-Follow these steps to start developing with Zello for Work SDK.
+Follow these steps to start developing with ZelloWork SDK.
 
 ###Step 1. Register your development network
 
