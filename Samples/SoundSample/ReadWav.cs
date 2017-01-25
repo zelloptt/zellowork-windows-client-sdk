@@ -23,6 +23,18 @@ namespace SoundSample
         byte[] m_samples;
         int m_StartSampleIndex = 0;
 
+        public ushort ChannelCount
+        {
+            get;
+            private set;
+        }
+
+        public ushort BitsPerSecond
+        {
+            get;
+            private set;
+        }
+
         public int SampleRate
         {
             get;
@@ -43,11 +55,11 @@ namespace SoundSample
                         byte[] fmtID = br.ReadBytes(4);//"fmt "
                         uint fmtSize = br.ReadUInt32();
                         ushort format = br.ReadUInt16();
-                        ushort channels = br.ReadUInt16();
+                        ChannelCount = br.ReadUInt16();
                         SampleRate = br.ReadInt32();
                         uint bytePerSec = br.ReadUInt32();
                         ushort blockSize = br.ReadUInt16();
-                        ushort bit = br.ReadUInt16();
+                        BitsPerSecond = br.ReadUInt16();
                         if (fmtSize == 18)
                         {
                             int fmtExtraSize = br.ReadInt16();
