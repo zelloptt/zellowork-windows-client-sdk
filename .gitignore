@@ -1,7 +1,8 @@
 *.user
-Samples/bin/Debug/
+*.aps
+*.ncb
+*.suo
+Samples/bin
 Samples/Temp/
-Samples/Samples.ncb
-Samples/Samples.suo
-/Samples/Sample6/obj/Debug
-/Samples/Sample3/obj
+Samples/Sample6/obj
+Samples/Sample3/obj
