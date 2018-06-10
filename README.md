@@ -1,8 +1,8 @@
 # ZelloWork client SDK for Windows
 *Push-to-talk SDK for your Windows or Windows Mobile application*
 
-Version: 2.17<br>
-Date: March 1, 2017
+Version: 2.19<br>
+Date: May 31, 2018
 
 ### Introduction
 Thanks for downloading ZelloWork SDK. It’s designed to enable easy integration of push-to-talk function into any application. This document will guide you through the installation and use of the SDK.
@@ -67,6 +67,20 @@ Instead host app receives uncompressed PCM audio stream for each incoming messag
 If chorus mode is active, all incoming audio messages are activated concurrently on receive, while in normal mode they are activate sequentially, one by one, similar to how Zello client normally works.
 
 ![alt text](Screenshots/SoundSample.png "SoundSample.exe main screen")
+
+###Sample8.exe
+Win32 C++ application for Windows based on headless SDK, implementing custom GUI 
+
+![alt text](Screenshots/Sample5-1.png "Sample8.exe sign in screen")
+![alt text](Screenshots/Sample5-2.png "Sample8.exe contact list")
+
+###MultiClientSample
+.NET 2.0 C# application based on headless SDK, implementing audio integration interfaces.
+Main window allows to create several in-proc zello clients, each one having functionality similar to SoundSample
+If integration mode is active, Zello client doesn't use playback and rendering hardware audio devices.
+Instead host app receives uncompressed PCM audio stream for each incoming message, and provides custom PCM audio stream for each outgoing message.
+
+![alt text](Screenshots/MultiClientSample.png "MultiClientSample.exe main screen")
 
 The samples are compiled for the use with ‘default.zellowork.com’ Zello for Work network. You can use any of the following login / password pairs to sign in:
 
