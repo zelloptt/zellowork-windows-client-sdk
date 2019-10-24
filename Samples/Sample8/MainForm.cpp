@@ -4,7 +4,7 @@
 
 
 CMainForm::CMainForm()
-:m_Mode(mLogin), m_State(sUnpushed), m_wExitCode(0)
+:m_Mode(mLogin), m_State(sUnpushed), m_wExitCode(0), m_NetworkStatus(ZelloPTTLib::NSSIGNINGOUT)
 {
 
 }
@@ -170,7 +170,13 @@ LRESULT CMainForm::OnTimer(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandl
 			if ((m_btButton.SendMessage(BM_GETSTATE) & BST_PUSHED) == BST_PUSHED && m_State != sPushed)
 			{
 				m_State = sPushed;
-				BeginMessage();
+				if (0 != (0x8000 & GetAsyncKeyState(VK_SHIFT))) {
+					SendText();
+				} else if (0 != (0x8000 & GetAsyncKeyState(VK_CONTROL))) {
+					SendLocation();
+				} else {
+					BeginMessage();
+				}
 			}
 			if ((m_btButton.SendMessage(BM_GETSTATE) & BST_PUSHED) != BST_PUSHED && m_State != sUnpushed)
 			{
@@ -219,34 +225,38 @@ LRESULT CMainForm::OnListViewItemActivate (int idCtrl, LPNMHDR pnmh, BOOL& bHand
 void CMainForm::UpdateStatus()
 {
 	ZelloPTTLib::NETWORK_STATUS ns = ZelloPTTLib::NSOFFLINE;
-	if (m_spMesh)
+	if (m_spMesh) {
 		m_spMesh->get_NetworkStatus(&ns);
-	TCHAR tszStatus[128] = {0};
-	switch (ns)
-	{
-	case ZelloPTTLib::NSOFFLINE:
-		LoadString(GetModuleHandle(0), IDS_OFFLINE, tszStatus, _countof(tszStatus) - 1);
-		break;
-	case ZelloPTTLib::NSONLINE:
-		LoadString(GetModuleHandle(0), IDS_ONLINE, tszStatus, _countof(tszStatus) - 1);
-		break;
-	case ZelloPTTLib::NSSIGNINGIN:
-		LoadString(GetModuleHandle(0), IDS_SIGNING_IN, tszStatus, _countof(tszStatus) - 1);
-		break;
-	case ZelloPTTLib::NSSIGNINGOUT:
-		LoadString(GetModuleHandle(0), IDS_SIGNING_OUT, tszStatus, _countof(tszStatus) - 1);
-		break;
-	}
-	m_stStatus.SetWindowText(tszStatus);
-	if ((ns == ZelloPTTLib::NSOFFLINE || ns == ZelloPTTLib::NSSIGNINGIN) && m_Mode != mLogin)
-	{
-		m_Mode = mLogin;
-		UpdateMode();
-	}
-	if ((ns == ZelloPTTLib::NSONLINE || ns == ZelloPTTLib::NSSIGNINGOUT) && m_Mode != mContacts)
-	{
-		m_Mode = mContacts;
-		UpdateMode();
+		if (m_NetworkStatus != ns) {
+			m_NetworkStatus = ns;
+			TCHAR tszStatus[128] = {0};
+			switch (ns)
+			{
+			case ZelloPTTLib::NSOFFLINE:
+				LoadString(GetModuleHandle(0), IDS_OFFLINE, tszStatus, _countof(tszStatus) - 1);
+				break;
+			case ZelloPTTLib::NSONLINE:
+				LoadString(GetModuleHandle(0), IDS_ONLINE, tszStatus, _countof(tszStatus) - 1);
+				break;
+			case ZelloPTTLib::NSSIGNINGIN:
+				LoadString(GetModuleHandle(0), IDS_SIGNING_IN, tszStatus, _countof(tszStatus) - 1);
+				break;
+			case ZelloPTTLib::NSSIGNINGOUT:
+				LoadString(GetModuleHandle(0), IDS_SIGNING_OUT, tszStatus, _countof(tszStatus) - 1);
+				break;
+			}
+			m_stStatus.SetWindowText(tszStatus);
+			if ((ns == ZelloPTTLib::NSOFFLINE || ns == ZelloPTTLib::NSSIGNINGIN) && m_Mode != mLogin)
+			{
+				m_Mode = mLogin;
+				UpdateMode();
+			}
+			if ((ns == ZelloPTTLib::NSONLINE || ns == ZelloPTTLib::NSSIGNINGOUT) && m_Mode != mContacts)
+			{
+				m_Mode = mContacts;
+				UpdateMode();
+			}
+		}
 	}
 }
 
@@ -462,25 +472,74 @@ void __stdcall CMainForm::OnMessageInBegin(ZelloPTTLib::IMessage* pMessage)
 		}
 	}
 }
+#include <sstream>
 
 void __stdcall CMainForm::OnMessageInEnd(ZelloPTTLib::IMessage* pMessage)
 {
-	ATL::CComQIPtr<ZelloPTTLib::IAudioInMessage> spInMessage(pMessage);
-	if(spInMessage) {
-		ATL::CComPtr<ZelloPTTLib::IContact> spContact;
-		spInMessage->get_Sender(&spContact);
-		if (spContact) {
-			ATL::CComBSTR bstrId;
-			ATL::CComBSTR bstrName;
-			int iDuration = 0;
-			spInMessage->get_Id(&bstrId);
-			spInMessage->get_Duration(&iDuration);
-			spContact->get_Name(&bstrName);
-			TCHAR tszTmp[128] = {0};
-			_sntprintf(tszTmp, _countof(tszTmp) - 1, _T("Incoming message %s from %s ends, duration %i\n"), ATL::CW2T(bstrId.m_str, CP_ACP).m_psz, ATL::CW2T(bstrName.m_str, CP_ACP).m_psz, iDuration);
-			OutputDebugString(tszTmp);
+	std::wstringstream stream;
+	ZelloPTTLib::MESSAGE_TYPE mt;
+	pMessage->get_Type(&mt);
+	switch(mt) {
+		case ZelloPTTLib::MTALERT:
+		case ZelloPTTLib::MTTEXT:
+		{
+			ATL::CComQIPtr<ZelloPTTLib::IAlertMessage> spAlert(pMessage);
+			if(spAlert) {
+				ATL::CComBSTR bstrText, bstrFullName, bstrId;
+				spAlert->get_Id(&bstrId);
+				spAlert->get_Text(&bstrText);
+				spAlert->get_FullName(&bstrFullName);
+				stream << L"New incoming " << (ZelloPTTLib::MTTEXT == mt ? L"text" : L"alert");
+				stream << L"[" << bstrId.m_str << L"]";
+				stream << L" from " << bstrFullName.m_str << L" : " << bstrText.m_str;
+			}
+			break;
+		}
+		case ZelloPTTLib::MTLOCATION:
+		{
+			ATL::CComQIPtr<ZelloPTTLib::ISharedLocation> spLocation(pMessage);
+			if(spLocation) {
+				ATL::CComBSTR bstrAltText, bstrFullName;
+				double lat, lon;
+				spLocation->get_ReverseGeolocation(&bstrAltText);
+				spLocation->get_FullName(&bstrFullName);
+				spLocation->get_Latitude(&lat);
+				spLocation->get_Longitude(&lon);
+				stream << L"New incoming geolocation from " << bstrFullName.m_str << L" : " << bstrAltText.m_str;
+				stream << L" (" << lat << L", " << lon << L")";
+			}
+			break;
+		}
+		case ZelloPTTLib::MTIMAGE:
+		{
+			ATL::CComQIPtr<ZelloPTTLib::ISharedImage> spImage(pMessage);
+			if(spImage) {
+				ATL::CComBSTR bstrFullName;
+				spImage->get_FullName(&bstrFullName);
+				stream << L"New incoming shared image from " << bstrFullName.m_str;
+			}
+			break;
+		}
+		case ZelloPTTLib::MTAUDIO:
+		{
+			ATL::CComQIPtr<ZelloPTTLib::IAudioInMessage> spInMessage(pMessage);
+			if(spInMessage) {
+				ATL::CComPtr<ZelloPTTLib::IContact> spContact;
+				spInMessage->get_Sender(&spContact);
+				if (spContact) {
+					ATL::CComBSTR bstrId;
+					ATL::CComBSTR bstrName;
+					int iDuration = 0;
+					spInMessage->get_Id(&bstrId);
+					spInMessage->get_Duration(&iDuration);
+					spContact->get_Name(&bstrName);
+					stream << L"New incoming audio from " << bstrName.m_str << L", duration " << iDuration;
+				}
+			}
 		}
 	}
+	stream << L"\r\n";
+	OutputDebugString(stream.str().c_str()); 
 }
 
 void __stdcall CMainForm::OnMessageOutBegin(ZelloPTTLib::IMessage* pMessage, ZelloPTTLib::IContact* pContact)
@@ -588,6 +647,22 @@ void CMainForm::BeginMessage()
 		m_spMesh->BeginMessage(Users);
 }
 
+void CMainForm::GetSelectedContactIds(std::queue<std::wstring>* pQ)
+{
+	unsigned cnt = m_lvContacts.SendMessage(LVM_GETITEMCOUNT);
+	for (unsigned i = 0; i < cnt; ++i)
+	{
+		LVITEM li = {0};
+		li.mask = LVIF_STATE;
+		li.iItem = i;
+		li.stateMask = LVIS_SELECTED;
+		int r = m_lvContacts.SendMessage(LVM_GETITEM, 0, (LPARAM)&li);
+		if (li.state & LVIS_SELECTED) {
+			pQ->push(m_Ids[i]);
+		}
+	}
+}
+
 void CMainForm::EndMessage()
 {
 	if (m_spMesh)
@@ -602,4 +677,84 @@ void __stdcall CMainForm::OnEvent(ZelloPTTLib::IZelloEvent* pEvent)
     pEvent->get_Type(&eEventType);
     pEvent->get_Text(sEventText.GetAddress());
     pEvent->get_ErrCode(&eErrorCode);
+	if(ZelloPTTLib::etGEOLOCATION_SENT == eEventType) {
+		OutputDebugString(L"Geolocation sent");
+	}
+	else if(ZelloPTTLib::etTEXT_SENT == eEventType) {
+		OutputDebugString(L"Text message sent");
+	}
+}
+
+void CMainForm::SendText()
+{
+	CComQIPtr<ZelloPTTLib::IZelloClient2> spClient2(m_spMesh);
+	if(!spClient2) 
+		return;
+	std::queue<std::wstring> q;
+	GetSelectedContactIds(&q);
+	if(!q.empty()) {
+		CComPtr<ZelloPTTLib::IContacts> spContacts;
+		m_spMesh->get_Contacts(&spContacts.p);
+		if(spContacts) {
+			do {
+				CComPtr<ZelloPTTLib::IContact> spContact;
+				spContacts->Find(ATL::CComBSTR(q.front().c_str()), &spContact.p);
+				if(spContact) {
+					VARIANT_BOOL vbCanSend = VARIANT_FALSE;
+					ZelloPTTLib::CONTACT_TYPE ct;
+					spContact->get_Type(&ct);
+					if(ct == ZelloPTTLib::CTUSER) {
+						CComQIPtr<ZelloPTTLib::IUser2> spUsr(spContact);
+						if(spUsr) {
+							spUsr->get_CanReceiveText(&vbCanSend);
+						}
+					} else {
+						vbCanSend = VARIANT_TRUE;
+					}
+					if(vbCanSend != VARIANT_FALSE) {
+						spClient2->SendText(spContact, ATL::CComBSTR(L"Sample message"), ATL::CComBSTR(L""));
+						break;
+					}
+				}
+				q.pop();
+			} while(!q.empty());
+		}
+	}
+}
+
+void CMainForm::SendLocation()
+{
+	CComQIPtr<ZelloPTTLib::IZelloClient2> spClient2(m_spMesh);
+	if(!spClient2) 
+		return;
+	std::queue<std::wstring> q;
+	GetSelectedContactIds(&q);
+	if(!q.empty()) {
+		CComPtr<ZelloPTTLib::IContacts> spContacts;
+		m_spMesh->get_Contacts(&spContacts.p);
+		if(spContacts) {
+			do {
+				CComPtr<ZelloPTTLib::IContact> spContact;
+				spContacts->Find(ATL::CComBSTR(q.front().c_str()), &spContact.p);
+				if(spContact) {
+					VARIANT_BOOL vbCanSend = VARIANT_FALSE;
+					ZelloPTTLib::CONTACT_TYPE ct;
+					spContact->get_Type(&ct);
+					if(ct == ZelloPTTLib::CTUSER) {
+						CComQIPtr<ZelloPTTLib::IUser2> spUsr(spContact);
+						if(spUsr) {
+							spUsr->get_CanReceiveGeolocation(&vbCanSend);
+						}
+					} else {
+						vbCanSend = VARIANT_TRUE;
+					}
+					if(vbCanSend != VARIANT_FALSE) {
+						spClient2->SendLocation(spContact, ATL::CComBSTR(L"Zero"), 0, 0, ATL::CComBSTR(L"") );
+						break;
+					}
+				}
+				q.pop();
+			} while(!q.empty());
+		}
+	}
 }
