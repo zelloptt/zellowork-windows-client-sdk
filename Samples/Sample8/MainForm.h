@@ -23,6 +23,7 @@ class CMainForm :
 					m_Mode;
 	enum State { sUnpushed, sPushed }
 					m_State;
+	ZelloPTTLib::NETWORK_STATUS m_NetworkStatus;
 
 public:
 	enum { IDD = IDD_MAIN };
@@ -85,5 +86,8 @@ private:
 	void UpdateContacts();
 	void BeginMessage();
 	void EndMessage();
+	void SendText();
+	void SendLocation();
 	bool BeginSigningOut();
+	void GetSelectedContactIds(std::queue<std::wstring>* pQ);
 };

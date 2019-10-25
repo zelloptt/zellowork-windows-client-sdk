@@ -23,6 +23,7 @@
 #include <atlsafe.h>
 #include <string>
 #include <map>
+#include <queue>
 
 using namespace ATL;
 

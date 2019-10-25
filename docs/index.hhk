@@ -4,6 +4,7 @@
 <param name="FrameName" value="right">
 </OBJECT>
 <UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#a24a6feace049cb0e96b959a8362d1207"><param name="Name" value="Accuracy"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_network.html#a24675fd6f532638533698a6c2c5c6671"><param name="Name" value="AddSupernode"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_ptt_events.html#af91f92e215875e0fe92d76b960c0fd43"><param name="Name" value="AudioMessageInStart"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_ptt_events.html#a7c299c81b6464e3ef344c0a76ac82b7c"><param name="Name" value="AudioMessageInStop"></OBJECT>
@@ -13,6 +14,7 @@
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_alert_message.html#a1fde87a94f60d5a28e2ca26a771d55b2"><param name="Name" value="IAlertMessage"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_audio_in_message.html#a1fde87a94f60d5a28e2ca26a771d55b2"><param name="Name" value="IAudioInMessage"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_image.html#a1fde87a94f60d5a28e2ca26a771d55b2"><param name="Name" value="ISharedImage"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#a1fde87a94f60d5a28e2ca26a771d55b2"><param name="Name" value="ISharedLocation"></OBJECT>
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_channel.html#a361b423f502964cf5b9d9ed9d9977488"><param name="Name" value="AutoConnect"></OBJECT>
   <UL>
@@ -23,6 +25,9 @@
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_ptt.html#a430e2507776644f759adb71b89fc8a57"><param name="Name" value="BeginMessage"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_ptt2.html#a34554fb8b78f532ce5f1f912c5c3d10a"><param name="Name" value="BeginMessageEx"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_ptt.html#ab0e24174b916058d0d186d80611fac59"><param name="Name" value="Cancel"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_user2.html#a5fb812c4ccdac95738180b9f53e1f27e"><param name="Name" value="CanReceiveGeolocation"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_user2.html#a09c683ef1a652164afa8450242ede240"><param name="Name" value="CanReceiveImage"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_user2.html#afb9b7f0ca0d2c8d5074c33f7a96df9b5"><param name="Name" value="CanReceiveText"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_ptt4.html#ae05bb5acb79fe097753b2e318673ff96"><param name="Name" value="Chorus"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga58ec4aa3eec43ccb1d2dd4ade7d33c66a726d77b376d5a1ba42e8a73dec4808ad"><param name="Name" value="CL_AddContactError"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga58ec4aa3eec43ccb1d2dd4ade7d33c66a77e0b0594167cb6d4164f59cef1e284b"><param name="Name" value="CL_AddContactExists"></OBJECT>
@@ -83,18 +88,21 @@
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_alert_message.html#a61f2824c0f11f9b5c0cc8727114da1d3"><param name="Name" value="IAlertMessage"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_audio_in_message2.html#a61f2824c0f11f9b5c0cc8727114da1d3"><param name="Name" value="IAudioInMessage2"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_image.html#a61f2824c0f11f9b5c0cc8727114da1d3"><param name="Name" value="ISharedImage"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#a61f2824c0f11f9b5c0cc8727114da1d3"><param name="Name" value="ISharedLocation"></OBJECT>
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_alert_message.html#a0866a64d35ffcc4bfb81360e4001a8d0"><param name="Name" value="CrosslinkAuthor"></OBJECT>
   <UL>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_alert_message.html#a0866a64d35ffcc4bfb81360e4001a8d0"><param name="Name" value="IAlertMessage"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_audio_in_message2.html#a0866a64d35ffcc4bfb81360e4001a8d0"><param name="Name" value="IAudioInMessage2"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_image.html#a0866a64d35ffcc4bfb81360e4001a8d0"><param name="Name" value="ISharedImage"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#a0866a64d35ffcc4bfb81360e4001a8d0"><param name="Name" value="ISharedLocation"></OBJECT>
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_alert_message.html#a9cf4a23ef17b2ca148fa5370e8d9aa2d"><param name="Name" value="CrosslinkAuthorDisplayName"></OBJECT>
   <UL>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_alert_message.html#a9cf4a23ef17b2ca148fa5370e8d9aa2d"><param name="Name" value="IAlertMessage"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_audio_in_message2.html#a9cf4a23ef17b2ca148fa5370e8d9aa2d"><param name="Name" value="IAudioInMessage2"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_image.html#a9cf4a23ef17b2ca148fa5370e8d9aa2d"><param name="Name" value="ISharedImage"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#a9cf4a23ef17b2ca148fa5370e8d9aa2d"><param name="Name" value="ISharedLocation"></OBJECT>
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga650a733cba01c76b0bfa68238b9b0e41a5d01dc024f58f41d9237cff66920f004"><param name="Name" value="CTCHANNEL"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga650a733cba01c76b0bfa68238b9b0e41a6634d26e6f5b3f554df75213e5d86f4c"><param name="Name" value="CTGROUP"></OBJECT>
@@ -116,6 +124,7 @@
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_audio_in_message2.html#af81584777bd9ef6c55846c76d813bf19"><param name="Name" value="IAudioInMessage2"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_audio_out_message2.html#af81584777bd9ef6c55846c76d813bf19"><param name="Name" value="IAudioOutMessage2"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_image.html#af81584777bd9ef6c55846c76d813bf19"><param name="Name" value="ISharedImage"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#af81584777bd9ef6c55846c76d813bf19"><param name="Name" value="ISharedLocation"></OBJECT>
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_contacts.html#a2d234fa206e37293f30cc2c7545f3e66"><param name="Name" value="Find"></OBJECT>
   <UL>
@@ -128,6 +137,7 @@
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_alert_message.html#aac43ee0ee387f149163a9f551f9518bd"><param name="Name" value="IAlertMessage"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_contact.html#aac43ee0ee387f149163a9f551f9518bd"><param name="Name" value="IContact"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_image.html#aac43ee0ee387f149163a9f551f9518bd"><param name="Name" value="ISharedImage"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#aac43ee0ee387f149163a9f551f9518bd"><param name="Name" value="ISharedLocation"></OBJECT>
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_ptt_events.html#a2c98a498ab8bf8fe93c453095f9845a2"><param name="Name" value="GetCanSignIn"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_settings2.html#ad616325099ab173c79a3a1db9df1f5b8"><param name="Name" value="GetPlaybackDevices"></OBJECT>
@@ -402,6 +412,21 @@
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_image.html#a2d1578fff7a5cda85256a3d6fcc3d824"><param name="Name" value="SaveToStream"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_image.html#a9b8c649eaa512f4c91a09a8c4e4df2b0"><param name="Name" value="Sender"></OBJECT>
   </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html"><param name="Name" value="ISharedLocation"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#a24a6feace049cb0e96b959a8362d1207"><param name="Name" value="Accuracy"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#a1fde87a94f60d5a28e2ca26a771d55b2"><param name="Name" value="Author"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#a61f2824c0f11f9b5c0cc8727114da1d3"><param name="Name" value="Crosslink"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#a0866a64d35ffcc4bfb81360e4001a8d0"><param name="Name" value="CrosslinkAuthor"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#a9cf4a23ef17b2ca148fa5370e8d9aa2d"><param name="Name" value="CrosslinkAuthorDisplayName"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#af81584777bd9ef6c55846c76d813bf19"><param name="Name" value="ExternalId"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#aac43ee0ee387f149163a9f551f9518bd"><param name="Name" value="FullName"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#a42b9566d33982d49ae8bf66725561070"><param name="Name" value="Latitude"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#a8fb70e79d7589ce0c27ec73f88375773"><param name="Name" value="Longitude"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#ae9b40f5986fdebf2300b8249b4a837dc"><param name="Name" value="ReverseGeolocation"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#a9b8c649eaa512f4c91a09a8c4e4df2b0"><param name="Name" value="Sender"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#a9239f2a3665aa0f57548d571985e082a"><param name="Name" value="Url"></OBJECT>
+  </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_contacts.html#abfcf9dd852d449417a1cbf07c1551d0d"><param name="Name" value="Item"></OBJECT>
   <UL>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_contacts.html#abfcf9dd852d449417a1cbf07c1551d0d"><param name="Name" value="IContacts"></OBJECT>
@@ -409,10 +434,17 @@
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_history.html#a784d824988de7b87a43ff3a2f4178f30"><param name="Name" value="IHistory"></OBJECT>
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_user.html"><param name="Name" value="IUser"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_user2.html"><param name="Name" value="IUser2"></OBJECT>
   <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_user.html#a346a410989c12bd5c817bc285a7a084d"><param name="Name" value="CustomStatusText"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_user2.html#a5fb812c4ccdac95738180b9f53e1f27e"><param name="Name" value="CanReceiveGeolocation"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_user2.html#a09c683ef1a652164afa8450242ede240"><param name="Name" value="CanReceiveImage"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_user2.html#afb9b7f0ca0d2c8d5074c33f7a96df9b5"><param name="Name" value="CanReceiveText"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_user2.html#a3021dc30c3a50969c6ab93eeb58c715d"><param name="Name" value="NewMessagesCount"></OBJECT>
   </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_user.html#a346a410989c12bd5c817bc285a7a084d"><param name="Name" value="IUser"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#a42b9566d33982d49ae8bf66725561070"><param name="Name" value="Latitude"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_network.html#ac98b0fc122211b395af2a78fb2f92b7d"><param name="Name" value="LoginServer"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#a8fb70e79d7589ce0c27ec73f88375773"><param name="Name" value="Longitude"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html"><param name="Name" value="LoudtalksMesh.idl"></OBJECT>
   <UL>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html#gga58ec4aa3eec43ccb1d2dd4ade7d33c66a726d77b376d5a1ba42e8a73dec4808ad"><param name="Name" value="CL_AddContactError"></OBJECT>
@@ -461,6 +493,8 @@
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html#gga9b5a0b76eb0e090179107cdfc25e8593af511a1fdc1b1b10c68241e7dfa893874"><param name="Name" value="MTALERT"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html#gga9b5a0b76eb0e090179107cdfc25e8593ae69d245ae88c309272a8cdce7d8f854e"><param name="Name" value="MTAUDIO"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html#gga9b5a0b76eb0e090179107cdfc25e8593aa4089ab0e8d70c331d0265f54edec0e0"><param name="Name" value="MTIMAGE"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html#gga9b5a0b76eb0e090179107cdfc25e8593abe3a8a9f9d388a9521ed6071f78968e7"><param name="Name" value="MTLOCATION"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html#gga9b5a0b76eb0e090179107cdfc25e8593a740a01a7cb7d28f498b5b8ae8fd9fdb9"><param name="Name" value="MTTEXT"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html#gga98981d776fed5cc0ace397ef8dbbdecca3efc46e90f32919d12b23f5de79de6ef"><param name="Name" value="NSOFFLINE"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html#gga98981d776fed5cc0ace397ef8dbbdeccae100db928c75574e80dba50ee33ac2a4"><param name="Name" value="NSONLINE"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_loudtalks_mesh_8idl.html#gga98981d776fed5cc0ace397ef8dbbdeccae1d1692f1008ff34070926c79aa176f2"><param name="Name" value="NSSIGNINGIN"></OBJECT>
@@ -535,6 +569,8 @@
   <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga9b5a0b76eb0e090179107cdfc25e8593af511a1fdc1b1b10c68241e7dfa893874"><param name="Name" value="MTALERT"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga9b5a0b76eb0e090179107cdfc25e8593ae69d245ae88c309272a8cdce7d8f854e"><param name="Name" value="MTAUDIO"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga9b5a0b76eb0e090179107cdfc25e8593aa4089ab0e8d70c331d0265f54edec0e0"><param name="Name" value="MTIMAGE"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga9b5a0b76eb0e090179107cdfc25e8593abe3a8a9f9d388a9521ed6071f78968e7"><param name="Name" value="MTLOCATION"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga9b5a0b76eb0e090179107cdfc25e8593a740a01a7cb7d28f498b5b8ae8fd9fdb9"><param name="Name" value="MTTEXT"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_contact.html#ab439b101428bf3bf914b4fe6bc67a7a3"><param name="Name" value="Muted"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_audio_devices.html#a717fdfa0bd41ebc53da85f9cea878234"><param name="Name" value="Name"></OBJECT>
   <UL>
@@ -549,6 +585,7 @@
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_ptt.html#a2b622a417ad7b29d9799fc88d3253507"><param name="Name" value="Network"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_network.html#a844831af2b766d822be631bb51de65ea"><param name="Name" value="NetworkName"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_ptt.html#aa9f5e539024c7ab1de67cc2b51c69efe"><param name="Name" value="NetworkStatus"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_user2.html#a3021dc30c3a50969c6ab93eeb58c715d"><param name="Name" value="NewMessagesCount"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga98981d776fed5cc0ace397ef8dbbdecca3efc46e90f32919d12b23f5de79de6ef"><param name="Name" value="NSOFFLINE"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga98981d776fed5cc0ace397ef8dbbdeccae100db928c75574e80dba50ee33ac2a4"><param name="Name" value="NSONLINE"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="group___enums.html#gga98981d776fed5cc0ace397ef8dbbdeccae1d1692f1008ff34070926c79aa176f2"><param name="Name" value="NSSIGNINGIN"></OBJECT>
@@ -589,6 +626,7 @@
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_settings2.html#a15588577c3331416a0337df812d9b997"><param name="Name" value="RecordingDeviceId"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_ptt.html#afbf83c2de4a181300d41dcf7473844d0"><param name="Name" value="RepeatLastMessage"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_network.html#a4b37aabec512b512c696c24211f46d07"><param name="Name" value="ResetSupernodes"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#ae9b40f5986fdebf2300b8249b4a837dc"><param name="Name" value="ReverseGeolocation"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_image.html#aa6c63c95c5d7ece02f87244c81e25c00"><param name="Name" value="SaveToFile"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_image.html#a2d1578fff7a5cda85256a3d6fcc3d824"><param name="Name" value="SaveToStream"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_network2.html#ac99685c215a734ca63e3d8648dcedc4c"><param name="Name" value="SecureConnections"></OBJECT>
@@ -599,6 +637,7 @@
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_alert_message.html#a9b8c649eaa512f4c91a09a8c4e4df2b0"><param name="Name" value="IAlertMessage"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_audio_in_message.html#a9b8c649eaa512f4c91a09a8c4e4df2b0"><param name="Name" value="IAudioInMessage"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_image.html#a9b8c649eaa512f4c91a09a8c4e4df2b0"><param name="Name" value="ISharedImage"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#a9b8c649eaa512f4c91a09a8c4e4df2b0"><param name="Name" value="ISharedLocation"></OBJECT>
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_settings3.html#a695c57af771f42e0a366b371745b9f45"><param name="Name" value="SetProxyServer"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_settings3.html#a07dc74184c4ef57075e940a00edb3157"><param name="Name" value="SetProxyServerAuth"></OBJECT>
@@ -683,6 +722,7 @@
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_ptt.html#acdf0692dfc70878502728728bb57a7c2"><param name="Name" value="UpdateContacts"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_ptt2.html#a15042ecd4a72d49889f30a7b3a127566"><param name="Name" value="UpdateSoloContact"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_shared_location.html#a9239f2a3665aa0f57548d571985e082a"><param name="Name" value="Url"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_ptt.html#a836be2c9e85600560ec3435bb34470ec"><param name="Name" value="Username"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_settings.html#a982d7a9d0ce60ae1075a64a5016edc22"><param name="Name" value="VoxActivationThreshold"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="interface_i_ptt.html#ad30bc66789412ca4b7266d5428ffd6c4"><param name="Name" value="VoxActive"></OBJECT>
