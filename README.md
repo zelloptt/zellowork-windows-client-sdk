@@ -1,8 +1,8 @@
 # ZelloWork client SDK for Windows
 *Push-to-talk SDK for your Windows or Windows Mobile application*
 
-Version: 2.15<br>
-Date: December 27, 2016
+Version: 2.50<br>
+Date: October 25, 2019
 
 ### Introduction
 Thanks for downloading ZelloWork SDK. It’s designed to enable easy integration of push-to-talk function into any application. This document will guide you through the installation and use of the SDK.
@@ -94,8 +94,7 @@ Follow these steps to start developing with Zello for Work SDK.
 
 ###Step 2. Open relevant sample and modify the code to use your network
 
-1.	Sample 2 uses HTML and JavaScript only so it could viewed and edited in any text editor
-a.	All other samples require Visual Studio 2008 or later
+1.	Sample 2 uses HTML and JavaScript only so it could viewed and edited in any text editor. All other samples require Visual Studio 2008 or later
 2.	In the code replace network name ‘default’ with the name of the network you just registered
 3.	Compile and run the sample
 4.	Verify that you can login using the accounts you created
@@ -111,8 +110,9 @@ When deploying your application make sure that the following conditions are met:
 
 1.	You application installer installs and registers ptt.dll ActiveX control
 2.	Make sure that you use the appropriate ActiveX control for your target platform. 
-  a.	ptt.dll located in the SDK root folder is intended for Windows
-  b.	ptt.dll located in the ‘mobile’ subfolder is intended for Windows Mobile
+  *	ptt.dll located in the SDK root folder is intended for Windows
+  *	zelloptt.dll COM library located in the 'headless' subfolder is intended for Windows
+  *	ptt.dll located in the ‘mobile’ subfolder is intended for Windows Mobile
 
 ## Going live with your Zello-enabled app
 All apps using Zello SDK must adhere to the following guidelines:
