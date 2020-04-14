@@ -1,7 +1,7 @@
-# ZelloWork Windows app command line interface
+# Zello Windows app command line interface
 
 ### Description
-The ZelloWork command line interface allows you to send text, voice, and image messages to the specified user or channel. The ZelloWork application must be installed and the correct user account must be configured.
+The Zello command line interface allows you to send text, voice, and image messages to the specified user or channel. The Zello application must be installed and the correct user account must be configured.
 
 If the Zello app is already running, it will immediately start sending the message. If the Zello app is not running, it will start, sign in and then send the message. The result can be saved to a text file and you can customize operation timeout.
 
@@ -23,7 +23,7 @@ Option | Description
 Send an audio message from the file `Audioclip.wav` to a channel named `This game has no name` with a timeout of `12` seconds and write the operation result to `E:\Voice\log.txt`.
 
 ```shell
-"C:\Program Files\ZelloWork\ptt.exe" /contact="This game has no name"  /audio="E:\Voice\Audioclip.wav" /report="E:\Voice\log.txt" /timeout=12
+"C:\Program Files\ZelloWork\ptt.exe" /contact="This game has no name" /channel=true /audio="E:\Voice\Audioclip.wav" /report="E:\Voice\log.txt" /timeout=12
 ```
 
 #### Call alert
@@ -33,6 +33,7 @@ Send a call alert with the text `Please call dispatch` to user `1182 Mike` with 
 ```shell
 "C:\Program Files\ZelloWork\ptt.exe" /contact="1182 Mike"  /alert="Please call dispatch" /report="result.txt" /timeout=40
 ```
+
 
 
 
