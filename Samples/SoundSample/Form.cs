@@ -704,6 +704,11 @@ namespace SoundSample
             if (m_AudRecorder != null && false==String.IsNullOrEmpty(sWavToSend))
             {
                 CReadWavFile wf = new CReadWavFile(sWavToSend);
+                if (wf.ChannelCount != 1 || wf.BitsPerSecond != 16)
+                {
+                    MessageBox.Show("Incompatible WAV file format", "Unable to send", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    return;
+                }
                 PttLib.IContacts cnts = axMesh.Contacts;
                 PttLib.IMessage msg = null;
                 List<string> lst = new List<string>();

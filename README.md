@@ -1,8 +1,8 @@
 # ZelloWork client SDK for Windows
 *Push-to-talk SDK for your Windows or Windows Mobile application*
 
-Version: 2.15<br>
-Date: December 27, 2016
+Version: 2.60<br>
+Date: February 12, 2021
 
 ### Introduction
 Thanks for downloading ZelloWork SDK. It’s designed to enable easy integration of push-to-talk function into any application. This document will guide you through the installation and use of the SDK.

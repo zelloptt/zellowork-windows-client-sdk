@@ -420,7 +420,7 @@ void CMainForm::OnContactListChanged()
 	UpdateContacts();
 }
 
-void CMainForm::OnMessageInBegin(IDispatch* pMessage, VARIANT_BOOL* pbVal)
+void CMainForm::OnMessageInBegin(IDispatch* pMessage)
 {
 	if(pMessage)
 	{
@@ -442,9 +442,6 @@ void CMainForm::OnMessageInBegin(IDispatch* pMessage, VARIANT_BOOL* pbVal)
 			}
 		}
 	}
-	// Don't mind is message playback starts
-	if(pbVal)
-		*pbVal = VARIANT_TRUE;
 }
 
 void CMainForm::OnMessageInEnd(IDispatch* pMessage)
@@ -538,7 +535,7 @@ void CMainForm::OnMessageOutError(IDispatch* pMessage, IDispatch* pContact)
 	}
 }
 
-void CMainForm::OnAudioMessageInStart(IDispatch* pMessage)
+void CMainForm::OnAudioMessageInStart(IDispatch* pMessage, VARIANT_BOOL* pbVal)
 {
 	if(pMessage)
 	{
@@ -560,6 +557,9 @@ void CMainForm::OnAudioMessageInStart(IDispatch* pMessage)
 			}
 		}
 	}
+	// Don't mind is message playback starts
+	if(pbVal)
+		*pbVal = VARIANT_TRUE;
 }
 
 void CMainForm::OnAudioMessageInStop(IDispatch* pMessage)

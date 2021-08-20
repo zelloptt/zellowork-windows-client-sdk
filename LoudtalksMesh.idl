@@ -204,7 +204,11 @@ enum MESSAGE_TYPE
 	/** Call alert */
 	MTALERT		= 1,
 	/** Shared image */
-	MTIMAGE		= 1,
+	MTIMAGE		= 2,
+	/** Shared location */
+	MTLOCATION	= 3,
+	/** Text message */
+	MTTEXT		= 4
 }
 /// @cond MESSAGE_TYPE
 MESSAGE_TYPE
@@ -262,6 +266,8 @@ enum SETTING_ID
 	ST_IFC_RCV_IMAGES		= 28,
 	/* "language" Language file name (String)*/
 	ST_IFC_LANG				= 29,
+	/* "TextingAllowed" Texting is allowed/forbidden for this zello network (Boolean)*/
+	ST_IFC_TXT_ALLOWED		= 30,
 
 	/** "VoxEnabled" Enable VOX (Boolean)*/
 	ST_VOX_ENABLE			= 40,
@@ -585,6 +591,97 @@ interface ISharedImage : IMessage
 */
 [
 	object,
+	uuid(A67C7BB9-DFBB-4efe-9F2E-03019273B772),
+	dual,
+	oleautomation,
+	helpstring("ISharedLocation Interface"),
+	pointer_default(unique)
+]
+/**
+* Interface representing shared location.
+*/
+interface ISharedLocation : IMessage
+{
+	/**
+	* Get the reverse geocoded location.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(2001), helpstring("property ReverseGeolocation")] HRESULT ReverseGeolocation([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get shared location latitude.
+	* \param pdVal			Return value.
+	*/
+	[propget, id(2002), helpstring("property Latitude")] HRESULT Latitude([out, retval] double* pdVal);
+
+	/**
+	* Get shared location longitude.
+	* \param pdVal			Return value.
+	*/
+	[propget, id(2003), helpstring("property Longitude")] HRESULT Longitude([out, retval] double* pdVal);
+
+	/**
+	* Get shared location accuracy.
+	* \param pdVal			Return value.
+	*/
+	[propget, id(2004), helpstring("property Accuracy")] HRESULT Accuracy([out, retval] double* pdVal);
+
+	/**
+	* Get alert external id.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(2005), helpstring("property ExternalId")] HRESULT ExternalId([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get shared location sender.
+	* \param ppVal			Return value.
+	*/
+	[propget, id(2006), helpstring("property Sender")] HRESULT Sender([out, retval] IContact** ppVal);
+
+	/**
+	* Get shared location author for messages received from channels and groups.
+	* No author is returned for shared locations received from users.
+	* \param ppVal			Return value.
+	*/
+	[propget, id(2007), helpstring("property Author")] HRESULT Author([out, retval] IContact** ppVal);
+
+	/**
+	* Get full author name.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(2008), helpstring("property FullName")] HRESULT FullName([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get crosslink.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(2009), helpstring("property Crosslink")] HRESULT Crosslink([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get name of the author from crosslink network.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(2010), helpstring("property CrosslinkAuthor")] HRESULT CrosslinkAuthor([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Get display name of the author from crosslink network.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(2011), helpstring("property CrosslinkAuthorDisplayName")] HRESULT CrosslinkAuthorDisplayName([out, retval] BSTR* pbstrVal);
+
+	/**
+	* Not implemented.
+	* \param pbstrVal			Return value.
+	*/
+	[propget, id(2012), helpstring("property Url")] HRESULT Url([out, retval] BSTR* pbstrVal);
+};
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
 	uuid(E0434039-64D0-4849-A62A-E780D3EA9E57),
 	dual,
 	oleautomation,
@@ -823,6 +920,49 @@ interface IUser : IContact
 	* \param pbstrVal			Return value.
 	*/
 	[propget, id(1), helpstring("property CustomStatusText")] HRESULT CustomStatusText([out, retval] BSTR* pbstrVal);
+};
+/*@}*/
+
+/**
+* \ingroup Interfaces
+* @{
+*/
+[
+	object,
+	uuid(2692F22D-D7AE-4cfa-8B1F-780CDF850EC1),
+	dual,
+	oleautomation,
+	helpstring("IUserEx Interface"),
+	pointer_default(unique)
+]
+/**
+* Interface IUser2 provides some extra contact capabilities.
+*/
+interface IUser2 : IUser
+{
+	/**
+	* Check image support.
+	* \param pbVal					Return value.
+	*/
+	[propget, id(2000), helpstring("property CanReceiveImage")] HRESULT CanReceiveImage([out, retval] VARIANT_BOOL* pbVal);
+
+	/**
+	* Check texting support.
+	* \param pbVal					Return value.
+	*/
+	[propget, id(2001), helpstring("property CanReceiveText")] HRESULT CanReceiveText([out, retval] VARIANT_BOOL* pbVal);
+
+	/**
+	* Check geolocation sharing support.
+	* \param pbVal					Return value.
+	*/
+	[propget, id(2002), helpstring("property CanReceiveGeolocation")] HRESULT CanReceiveGeolocation([out, retval] VARIANT_BOOL* pbVal);
+
+	/**
+	* Get contact new messages count
+	* \param puiNewMessagesCount			Return value.
+	*/
+	[propget, id(2010), helpstring("property NewMessagesCount")] HRESULT NewMessagesCount([out, retval] UINT* puiNewMessagesCount);
 };
 /*@}*/
 
@@ -1471,7 +1611,7 @@ interface ISettings3 : ISettings2
 	pointer_default(unique)
 ]
 /**
-* ISettings4 interface extends ISettings3, allows to read and update the config settings by id.
+* ISettings4 interface extends ISettings3, allows to change all object settings by name or id.
 */
 interface ISettings4 : ISettings3
 {
@@ -1875,13 +2015,17 @@ interface IPtt4 : IPtt3
 	[id(301), helpstring("method StopAudioMessageIntegration")] HRESULT StopAudioMessageIntegration();
 
 	/**
-	* Check if AutoConnect feature is active.
+	* Check if Chorus feature is active.
+	* All the incoming messages are played live if this feature is on.
+	* If this feature is off, incoming messages are played one-by-one
 	* \param pbVal				Return value.
 	*/
 	[propget, id(302), helpstring("property Chorus")] HRESULT Chorus([out, retval] VARIANT_BOOL* pbVal);
 
 	/**
-	* Enable or disable AutoConnect feature.
+	* Enable or disable Chorus feature.
+	* All the incoming messages are played live if this feature is on.
+	* If this feature is off, incoming messages are played one-by-one
 	* \param bVal				New value.
 	*/
 	[propput, id(302), helpstring("property Chorus")] HRESULT Chorus([in] VARIANT_BOOL bVal);
